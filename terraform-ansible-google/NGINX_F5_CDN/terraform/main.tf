@@ -54,7 +54,7 @@ module "gcp_nginx1" {
 }
 
 # -------------------------
-# Setup variables for ansible inventory
+# Setup variables for the Ansible inventory
 # -------------------------
 
 data "template_file" "ansible_inventory" {
