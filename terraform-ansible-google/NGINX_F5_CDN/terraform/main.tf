@@ -26,6 +26,18 @@ module "cdn_network" {
 }
 
 # -------------------------
+# Create GKE cluster
+# -------------------------
+
+module "gcp_gke_cluster1" {
+  source           = "./modules/gcp_gke_cluster"
+  name_prefix      = var.name_prefix
+  subnetwork       = module.gcp_vpc_network.public_subnetwork_name
+  zone             = var.zone
+  machine_type     = var.gke_instance_type
+}
+
+# -------------------------
 # Create F5
 # -------------------------
 
@@ -62,7 +74,9 @@ data "template_file" "ansible_inventory" {
   vars = {
     gcp_F5_public_ip  = module.gcp_f5_standalone.f5_public_ip
     gcp_F5_private_ip = module.gcp_f5_standalone.f5_private_ip
-    gcp_nginx_data   = join("\n", module.gcp_nginx1.nginx_public_ip)
+    gcp_nginx_data    = join("\n", module.gcp_nginx1.nginx_public_ip)
+    gke_cluster_name  = module.gcp_gke_cluster1.name
+    gke_endpoint      = module.gcp_gke_cluster1.gke_endpoint
   }
 }
 

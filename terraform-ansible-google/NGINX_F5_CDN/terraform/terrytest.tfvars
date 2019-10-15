@@ -18,3 +18,6 @@ f5_instance_type = "n1-standard-4"
 
 # The machine type of the NGINX instance
 nginx_instance_type = "f1-micro"
+
+# The machine type of the gke cluster
+gke_instance_type = "n1-standard-1"

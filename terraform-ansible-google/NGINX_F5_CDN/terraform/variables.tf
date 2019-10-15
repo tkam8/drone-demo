@@ -37,3 +37,8 @@ variable "nginx_instance_type" {
   description = "The machine type of the instance."
   type        = string
 }
+
+variable "gke_instance_type" {
+  description = "The name of a Google Compute Engine machine type."
+  type        = string
+}

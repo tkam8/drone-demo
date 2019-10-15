@@ -85,12 +85,22 @@ output "f5_private_ip" {
 
 output "nginx_public_ip" {
   description = "Public IP of NGINX device"
-  module.gcp_nginx1.google_compute_instance.network_interface.0.access_config.0.nat_ip
+  value = module.gcp_nginx1.google_compute_instance.network_interface.0.access_config.0.nat_ip
 }
 
 output "nginx_private_ip" {
   description = "Private IP of NGINX device"
-  module.gcp_nginx1.google_compute_instance.network_interface.0.network_ip
+  value = module.gcp_nginx1.google_compute_instance.network_interface.0.network_ip
+}
+
+output "gke_cluster_name" {
+  description = "Name of GKE cluster"
+  value = module.gcp_gke_cluster1.name
+}
+
+output "gke_endpoint" {
+  description = "The IP address of this cluster's Kubernetes master"
+  value = module.gcp_gke_cluster1.gke_endpoint
 }
 
 # output "instance_default_network" {

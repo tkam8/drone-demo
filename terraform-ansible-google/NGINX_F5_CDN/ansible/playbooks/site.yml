@@ -2,7 +2,7 @@
 ---
 
 - name: Ubuntu initialization
-  hosts: aws_ubuntu_systems
+  hosts: gcp_nginx_systems
   become: yes
   become_method: sudo
   connection: ssh
@@ -22,3 +22,9 @@
   gather_facts: false
   roles:
    - f5_as3_declare
+
+- name: GKE f5-hello-world
+  hosts: gke_systems
+  gather_facts: true
+  roles:
+   - app1_gke_onboarding
