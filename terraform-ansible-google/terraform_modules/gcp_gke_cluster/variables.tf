@@ -20,7 +20,7 @@ variable "zone" {
 
 variable "primary_node_count" {
   description = "The number of nodes per instance group."
-  type        = string
+  type        = number
 }
 
 # -------------------------
