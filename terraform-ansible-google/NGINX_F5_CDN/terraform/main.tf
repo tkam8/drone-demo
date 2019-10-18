@@ -41,15 +41,15 @@ module "gcp_gke_cluster1" {
 # Create F5
 # -------------------------
 
-module "gcp_f5_standalone" {
-  source           = "./modules/gcp_f5_standalone_1NIC"
-  name_prefix      = var.name_prefix
-  subnetwork       = module.gcp_vpc_network.public_subnetwork_name
-  project          = var.project
-  region           = var.region
-  zone             = var.zone
-  machine_type     = var.f5_instance_type
-}
+# module "gcp_f5_standalone" {
+#   source           = "./modules/gcp_f5_standalone_1NIC"
+#   name_prefix      = var.name_prefix
+#   subnetwork       = module.gcp_vpc_network.public_subnetwork_name
+#   project          = var.project
+#   region           = var.region
+#   zone             = var.zone
+#   machine_type     = var.f5_instance_type
+# }
 
 # -------------------------
 # Create NGINX
@@ -76,7 +76,7 @@ data "template_file" "ansible_inventory" {
     gcp_F5_private_ip = module.gcp_f5_standalone.f5_private_ip
     gcp_nginx_data    = join("\n", module.gcp_nginx1.nginx_public_ip)
     gke_cluster_name  = module.gcp_gke_cluster1.name
-    gke_endpoint      = module.gcp_gke_cluster1.gke_endpoint
+    gke_endpoint      = module.gke_endpoint
   }
 }
 

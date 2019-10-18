@@ -1,4 +1,6 @@
 ---
+
+# Username and password will be grabbed from env var K8S_AUTH_USERNAME and K8S_AUTH_PASSWORD
 - name: Create a k8s namespace
   k8s:
     name: terry

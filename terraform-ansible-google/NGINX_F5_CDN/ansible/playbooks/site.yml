@@ -11,17 +11,17 @@
   roles: 
     - ubuntu_initialize
 
-- name: Onboarding BIG-IP
-  hosts: F5_systems
-  gather_facts: false
-  roles:
-   - f5_onboarding
+# - name: Onboarding BIG-IP
+#   hosts: F5_systems
+#   gather_facts: false
+#   roles:
+#    - f5_onboarding
 
-- name: BIG-IP AS3 declaration
-  hosts: F5_systems
-  gather_facts: false
-  roles:
-   - f5_as3_declare
+# - name: BIG-IP AS3 declaration
+#   hosts: F5_systems
+#   gather_facts: false
+#   roles:
+#    - f5_as3_declare
 
 - name: GKE f5-hello-world
   hosts: gke_systems
