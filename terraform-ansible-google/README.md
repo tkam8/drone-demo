@@ -22,7 +22,7 @@ Remarks - Ansible
 * playbooks/group_vars/F5_systems/vars will list the tags to look for to identify the AWS instances to define as pool members. This file is created automatically by Terraform
 * The AS3 declaration setup *Service Discovery* to identify the NGINX instances deployed. To do so, AS3 need to have access to your GCP infrastructure: It needs the encoded private key. Ansible playbook is setup to look for 1 environment variable1: GCP_CREDS_RO. Make sure to setup this environment variables on the device triggering the ansible playbook
 * Update ansible/playbooks/group_vars/all file with the location of your private key
-* You MUST create a file called f5_gke_vault in ansible/playbooks/group_vars/F5_systems. You need to create this file yourself to store the admin password that will be used on your BIG-IP. The corresponding variables name to setup is: VAULT_ADMIN_PASSWORD. Example of f5_vault file: 
+* You MUST create a file called f5_gke_vault in ansible/playbooks/group_vars/F5_systems. You need to create this file yourself to store the admin password that will be used on your BIG-IP. The corresponding variables name to setup is: VAULT_ADMIN_PASSWORD and VAULT_GKE_ADMIN_PASSWORD. Example of f5_vault file: 
 
 ```yaml
 

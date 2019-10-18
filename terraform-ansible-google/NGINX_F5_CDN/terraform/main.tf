@@ -19,7 +19,7 @@ module "cdn_network" {
   # When using these modules in your own templates, you will need to use a Git URL with a ref attribute that pins you
   # to a specific version of the modules, such as the following example:
   # source = "github.com/gruntwork-io/terraform-google-network.git//modules/vpc-network?ref=v0.1.2"
-  source      = "./modules/gcp_vpc_network"
+  source      = "../../terraform_modules/gcp_vpc_network"
   name_prefix = var.name_prefix
   project     = var.project
   region      = var.region
@@ -30,7 +30,7 @@ module "cdn_network" {
 # -------------------------
 
 module "gcp_gke_cluster1" {
-  source           = "./modules/gcp_gke_cluster"
+  source           = "../../terraform_modules/gcp_gke_cluster"
   name_prefix      = var.name_prefix
   subnetwork       = module.gcp_vpc_network.public_subnetwork_name
   zone             = var.zone
@@ -42,7 +42,7 @@ module "gcp_gke_cluster1" {
 # -------------------------
 
 # module "gcp_f5_standalone" {
-#   source           = "./modules/gcp_f5_standalone_1NIC"
+#   source           = "../../terraform_modules/gcp_f5_standalone_1NIC"
 #   name_prefix      = var.name_prefix
 #   subnetwork       = module.gcp_vpc_network.public_subnetwork_name
 #   project          = var.project
@@ -56,7 +56,7 @@ module "gcp_gke_cluster1" {
 # -------------------------
 
 module "gcp_nginx1" {
-  source           = "./modules/gcp_nginx_systems"
+  source           = "../../terraform_modules/gcp_nginx_systems"
   name_prefix      = var.name_prefix
   subnetwork       = module.gcp_vpc_network.public_subnetwork_name
   project          = var.project
