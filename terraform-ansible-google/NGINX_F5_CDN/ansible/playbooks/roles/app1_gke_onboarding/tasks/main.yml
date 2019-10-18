@@ -1,0 +1,14 @@
+---
+
+# Username and password will be grabbed from env var K8S_AUTH_USERNAME and K8S_AUTH_PASSWORD
+- name: Create a k8s namespace
+  k8s:
+    name: terry
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Create a NGINX pod by reading the definition from a local file
+  k8s:
+    state: present
+    src: /manifest_files/pod_nginx.yml
