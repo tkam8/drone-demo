@@ -41,6 +41,7 @@ module "gcp_gke_nodepool1" {
   name_prefix        = var.name_prefix
   gke_instance_type  = var.gke_instance_type
   cluster_name       = module.gcp_gke_cluster1.gke_cluster_name
+  zone               = var.zone
 }
 
 # -------------------------
