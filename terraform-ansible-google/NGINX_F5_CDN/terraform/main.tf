@@ -49,7 +49,7 @@ module "gcp_gke_nodepool1" {
 # module "gcp_f5_standalone" {
 #   source            = "../../terraform_modules/gcp_f5_standalone_1NIC"
 #   name_prefix       = var.name_prefix
-#   subnetwork        = module.gcp_f5_standalone_1NIC.public_subnetwork_name
+#   subnetwork        = module.cdn_network.public_subnetwork_name
 #   project           = var.project
 #   region            = var.region
 #   zone              = var.zone
@@ -63,7 +63,7 @@ module "gcp_gke_nodepool1" {
 module "gcp_nginx1" {
   source               = "../../terraform_modules/gcp_nginx_systems"
   name_prefix          = var.name_prefix
-  subnetwork           = module.gcp_nginx_systems.public_subnetwork_name
+  subnetwork           = module.cdn_network.public_subnetwork_name
   project              = var.project
   zone                 = var.zone
   nginx_instance_type  = var.nginx_instance_type
@@ -76,11 +76,11 @@ module "gcp_nginx1" {
 data "template_file" "ansible_inventory" {
   template = file("./templates/ansible_inventory.tpl")
   vars = {
-    gcp_F5_public_ip  = module.gcp_f5_standalone_1NIC.f5_public_ip
-    gcp_F5_private_ip = module.gcp_f5_standalone_1NIC.f5_private_ip
-    gcp_nginx_data    = join("\n", module.gcp_nginx_systems.nginx_public_ip)
-    gke_cluster_name  = module.gcp_gke_cluster.gke_cluster_name
-    gke_endpoint      = module.gcp_gke_cluster.gke_endpoint
+    #gcp_F5_public_ip  = module.gcp_f5_standalone.f5_public_ip
+    #gcp_F5_private_ip = module.gcp_f5_standalone.f5_private_ip
+    gcp_nginx_data    = join("\n", module.gcp_nginx1.nginx_public_ip)
+    gke_cluster_name  = module.gcp_gke_cluster1.gke_cluster_name
+    gke_endpoint      = module.gcp_gke_cluster1.gke_endpoint
   }
 }
 
