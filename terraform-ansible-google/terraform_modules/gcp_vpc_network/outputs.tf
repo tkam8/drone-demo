@@ -63,26 +63,26 @@ output "private_subnetwork_secondary_range_name" {
   value = google_compute_subnetwork.vpc_subnetwork_private.secondary_ip_range[0].range_name
 }
 
-# -------------------------
-# Access Tier - Network Tags
-# -------------------------
+# # -------------------------
+# # Access Tier - Network Tags
+# # -------------------------
 
-output "public" {
-  description = "The network tag string used for the public access tier"
-  value       = module.network_firewall.public
-}
+# output "public" {
+#   description = "The network tag string used for the public access tier"
+#   value       = module.network_firewall.public
+# }
 
-output "public_restricted" {
-  description = "The string of the public tag"
-  value       = module.network_firewall.public_restricted
-}
+# output "public_restricted" {
+#   description = "The string of the public tag"
+#   value       = module.network_firewall.public_restricted
+# }
 
-output "private" {
-  description = "The network tag string used for the private access tier"
-  value       = module.network_firewall.private
-}
+# output "private" {
+#   description = "The network tag string used for the private access tier"
+#   value       = module.network_firewall.private
+# }
 
-output "private_persistence" {
-  description = "The network tag string used for the private-persistence access tier"
-  value       = module.network_firewall.private_persistence
-}
+# output "private_persistence" {
+#   description = "The network tag string used for the private-persistence access tier"
+#   value       = module.network_firewall.private_persistence
+# }
