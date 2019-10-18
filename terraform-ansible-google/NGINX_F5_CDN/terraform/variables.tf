@@ -43,4 +43,9 @@ variable "gke_instance_type" {
   type        = string
 }
 
+variable "cluster_name" {
+  description = "The name of a GKE Cluster."
+  type        = string
+}
+
 variable "app_tag_value" {}

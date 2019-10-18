@@ -40,6 +40,7 @@ module "gcp_gke_nodepool1" {
   source             = "../../terraform_modules/gcp_gke_nodepool"
   name_prefix        = var.name_prefix
   gke_instance_type  = var.gke_instance_type
+  cluster_name       = module.gcp_gke_cluster1.gke_cluster_name
 }
 
 # -------------------------
