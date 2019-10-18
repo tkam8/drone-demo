@@ -37,9 +37,9 @@ module "gcp_gke_cluster1" {
 }
 
 module "gcp_gke_nodepool1" {
-  source           = "../../terraform_modules/gcp_gke_nodepool"
-  name_prefix      = var.name_prefix
-  machine_type     = var.gke_instance_type
+  source             = "../../terraform_modules/gcp_gke_nodepool"
+  name_prefix        = var.name_prefix
+  gke_instance_type  = var.gke_instance_type
 }
 
 # -------------------------
@@ -47,13 +47,13 @@ module "gcp_gke_nodepool1" {
 # -------------------------
 
 # module "gcp_f5_standalone" {
-#   source           = "../../terraform_modules/gcp_f5_standalone_1NIC"
-#   name_prefix      = var.name_prefix
-#   subnetwork       = module.gcp_vpc_network.public_subnetwork_name
-#   project          = var.project
-#   region           = var.region
-#   zone             = var.zone
-#   machine_type     = var.f5_instance_type
+#   source            = "../../terraform_modules/gcp_f5_standalone_1NIC"
+#   name_prefix       = var.name_prefix
+#   subnetwork        = module.gcp_vpc_network.public_subnetwork_name
+#   project           = var.project
+#   region            = var.region
+#   zone              = var.zone
+#   f5_instance_type  = var.f5_instance_type
 # }
 
 # -------------------------
@@ -61,12 +61,12 @@ module "gcp_gke_nodepool1" {
 # -------------------------
 
 module "gcp_nginx1" {
-  source           = "../../terraform_modules/gcp_nginx_systems"
-  name_prefix      = var.name_prefix
-  subnetwork       = module.gcp_vpc_network.public_subnetwork_name
-  project          = var.project
-  zone             = var.zone
-  machine_type     = var.nginx_instance_type
+  source               = "../../terraform_modules/gcp_nginx_systems"
+  name_prefix          = var.name_prefix
+  subnetwork           = module.gcp_vpc_network.public_subnetwork_name
+  project              = var.project
+  zone                 = var.zone
+  nginx_instance_type  = var.nginx_instance_type
 }
 
 # -------------------------
