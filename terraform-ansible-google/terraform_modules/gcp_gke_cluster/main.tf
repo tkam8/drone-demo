@@ -7,7 +7,6 @@ resource "google_container_cluster" "primary" {
   name               = "${var.name_prefix}-gke-cluster"
   location           = var.zone
   initial_node_count = 1
-  machine_type        = var.gke_instance_type
 
   subnetwork = var.subnetwork
 
@@ -21,6 +20,7 @@ resource "google_container_cluster" "primary" {
   }
 
   node_config {
+    machine_type = var.gke_instance_type
     oauth_scopes = [
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
@@ -44,15 +44,15 @@ resource "google_container_cluster" "primary" {
   }
 }
 
-# Manage node pool in the GKE cluster separately from the cluster control plane.
+# (Optional) Manage node pool in the GKE cluster separately from the cluster control plane.
 
-resource "google_container_node_pool" "primary_nodes" {
-  name       = "${var.name_prefix}-primary-nodes"
-  location   = var.zone
-  cluster    = google_container_cluster.primary.name
-  node_count = var.primary_node_count
+# resource "google_container_node_pool" "primary_nodes" {
+#   name       = "${var.name_prefix}-primary-nodes"
+#   location   = var.zone
+#   cluster    = google_container_cluster.primary.name
+#   node_count = var.primary_node_count
 
-  management {
-    auto_repair = true
-  }
-}
+#   management {
+#     auto_repair = true
+#   }
+# }

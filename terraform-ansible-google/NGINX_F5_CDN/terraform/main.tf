@@ -35,7 +35,6 @@ module "gcp_gke_cluster1" {
   subnetwork       = module.gcp_vpc_network.public_subnetwork_name
   zone             = var.zone
   machine_type     = var.gke_instance_type
-  node_count       = var.primary_node_count
 }
 
 # -------------------------
