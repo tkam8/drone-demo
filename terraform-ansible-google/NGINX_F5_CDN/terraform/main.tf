@@ -6,7 +6,7 @@ terraform {
 
 # Configure the Google Cloud provider
 provider "google" {
-  credentials = "${file("#{/tmp/gcp_creds.json}")}"
+  credentials = "${file("/tmp/gcp_creds.json")}"
   project     = var.project
   region      = var.region
 }
