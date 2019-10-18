@@ -29,8 +29,3 @@ variable "tag" {
   default     = "public"
 }
 
-# variable "primary_node_count" {
-#   description = "The number of nodes per instance group."
-#   type        = number
-#   default     = 3
-# }

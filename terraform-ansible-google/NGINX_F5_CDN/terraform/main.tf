@@ -26,7 +26,7 @@ module "cdn_network" {
 }
 
 # -------------------------
-# Create GKE cluster
+# Create GKE cluster and Node Pool
 # -------------------------
 
 module "gcp_gke_cluster1" {
@@ -34,6 +34,11 @@ module "gcp_gke_cluster1" {
   name_prefix      = var.name_prefix
   subnetwork       = module.gcp_vpc_network.public_subnetwork_name
   zone             = var.zone
+}
+
+module "gcp_gke_nodepool1" {
+  source           = "../../terraform_modules/gcp_gke_nodepool"
+  name_prefix      = var.name_prefix
   machine_type     = var.gke_instance_type
 }
 
@@ -60,7 +65,6 @@ module "gcp_nginx1" {
   name_prefix      = var.name_prefix
   subnetwork       = module.gcp_vpc_network.public_subnetwork_name
   project          = var.project
-  region           = var.region
   zone             = var.zone
   machine_type     = var.nginx_instance_type
 }
