@@ -56,17 +56,17 @@ output "private_subnetwork_secondary_cidr_block" {
 
 output "public" {
   description = "The network tag string used for the public access tier"
-  value       = module.cdn_network.public
+  value       = module.network_firewall.public
 }
 
 output "private" {
   description = "The network tag string used for the private access tier"
-  value       = module.cdn_network.private
+  value       = module.network_firewall.private
 }
 
 output "private_persistence" {
   description = "The network tag string used for the private-persistence access tier"
-  value       = module.cdn_network.private_persistence
+  value       = module.network_firewall.private_persistence
 }
 
 # -------------------------
