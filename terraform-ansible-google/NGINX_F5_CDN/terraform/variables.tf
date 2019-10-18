@@ -42,3 +42,5 @@ variable "gke_instance_type" {
   description = "The name of a Google Compute Engine machine type."
   type        = string
 }
+
+variable "app_tag_value" {}
