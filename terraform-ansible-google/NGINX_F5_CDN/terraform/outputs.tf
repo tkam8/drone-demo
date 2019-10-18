@@ -3,7 +3,7 @@ output "network" {
   value       = module.cdn_network.network
 }
 
-variable "allowed_networks" {
+output "allowed_networks" {
   description = "The public networks that is allowed access to the public_restricted subnetwork of the network"
   value        = var.allowed_networks
 }
