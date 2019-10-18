@@ -27,6 +27,23 @@ module "cdn_network" {
 }
 
 # -------------------------
+# Attach Firewall Rules to allow inbound traffic to tagged instances
+# -------------------------
+
+module "network_firewall" {
+  source = "../../terraform_modules/gcp_network_firewall"
+
+  name_prefix        = var.name_prefix
+  project            = var.project
+  network            = module.cdn_network.network
+  allowed_networks   = var.allowed_networks
+
+  public_subnetwork  = module.cdn_network.public_subnetwork
+  private_subnetwork = module.cdn_network.private_subnetwork
+}
+
+
+# -------------------------
 # Create GKE cluster and Node Pool
 # -------------------------
 
