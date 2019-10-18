@@ -30,7 +30,6 @@ resource "google_compute_instance" "nginx1" {
     }
   }
 
-  metadata {
-        startup-script = var.startup_script
-    } 
+  metadata_startup_script  = var.startup_script
+     
 }
