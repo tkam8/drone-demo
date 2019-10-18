@@ -17,7 +17,7 @@ resource "google_container_node_pool" "primary_nodes" {
 
   node_config {
     preemptible  = true
-    machine_type = var.gke_machine_type
+    machine_type = var.gke_instance_type
 
     oauth_scopes = [
       "https://www.googleapis.com/auth/logging.write",

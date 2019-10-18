@@ -15,7 +15,7 @@ variable "primary_node_count" {
   default     = 3
 }
 
-variable "gke_machine_type" {
+variable "gke_instance_type" {
   description = "The machine type for the gke nodes."
   type        = string
   default     = "n1-standard-1"
