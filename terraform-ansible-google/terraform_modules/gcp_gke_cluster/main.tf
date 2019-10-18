@@ -20,3 +20,10 @@ resource "google_container_cluster" "primary" {
   }
 }
 
+
+# Setup data resource
+
+data "google_container_cluster" "primary" {
+  name       = "primary"
+  location   = var.zone
+}

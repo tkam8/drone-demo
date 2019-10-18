@@ -25,3 +25,10 @@ resource "google_container_node_pool" "primary_nodes" {
     ]
   }
 }
+
+# Setup data resource
+
+data "google_container_cluster" "my_cluster" {
+  name       = "my-cluster"
+  location   = "us-east1-a"
+}
