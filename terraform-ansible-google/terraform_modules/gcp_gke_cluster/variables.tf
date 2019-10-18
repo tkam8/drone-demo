@@ -18,11 +18,6 @@ variable "zone" {
   type        = string
 }
 
-variable "primary_node_count" {
-  description = "The number of nodes per instance group."
-  type        = number
-}
-
 # -------------------------
 # OPTIONAL PARAMETERS
 # Generally, these values won't need to be changed.
@@ -33,3 +28,9 @@ variable "tag" {
   type        = string
   default     = "public"
 }
+
+# variable "primary_node_count" {
+#   description = "The number of nodes per instance group."
+#   type        = number
+#   default     = 3
+# }
