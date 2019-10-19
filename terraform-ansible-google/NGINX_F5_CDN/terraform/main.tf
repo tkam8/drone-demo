@@ -50,6 +50,7 @@ module "network_firewall" {
 module "gcp_gke_cluster1" {
   source           = "../../terraform_modules/gcp_gke_cluster"
   name_prefix      = var.name_prefix
+  network          = module.cdn_network.public_subnetwork_name
   subnetwork       = module.cdn_network.public_subnetwork_name
   zone             = var.zone
 }

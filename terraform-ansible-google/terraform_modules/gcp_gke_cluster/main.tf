@@ -7,7 +7,8 @@ resource "google_container_cluster" "primary" {
   name               = "${var.name_prefix}-gke-cluster"
   location           = var.zone
   initial_node_count = 1
-
+ 
+  network    = var.network
   subnetwork = var.subnetwork
 
   master_auth {

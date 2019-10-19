@@ -8,6 +8,11 @@ variable "name_prefix" {
   type        = string
 }
 
+variable "network" {
+  description = "A reference (self_link) to the network to place the gke cluster in"
+  type        = string
+}
+
 variable "subnetwork" {
   description = "A reference (self_link) to the subnetwork to place the gke cluster in"
   type        = string
