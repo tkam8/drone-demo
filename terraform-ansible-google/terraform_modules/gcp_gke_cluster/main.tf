@@ -7,12 +7,13 @@ resource "google_container_cluster" "primary" {
   name               = "${var.name_prefix}-gke-cluster"
   location           = var.zone
   initial_node_count = 1
-
+ 
+  network    = var.network
   subnetwork = var.subnetwork
 
   master_auth {
     username = "admin"
-    password = "admin"
+    password = "LWkCpSd8kf44m8Y2"
 
     client_certificate_config {
       issue_client_certificate = false
@@ -20,3 +21,10 @@ resource "google_container_cluster" "primary" {
   }
 }
 
+
+# Setup data resource
+
+data "google_container_cluster" "primary" {
+  name       = "primary"
+  location   = var.zone
+}

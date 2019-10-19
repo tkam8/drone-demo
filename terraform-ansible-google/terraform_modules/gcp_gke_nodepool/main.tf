@@ -8,7 +8,7 @@ terraform {
 resource "google_container_node_pool" "primary_nodes" {
   name       = "${var.name_prefix}-primary-nodes"
   location   = var.zone
-  cluster    = google_container_cluster.primary.name
+  cluster    = var.cluster_name
   node_count = var.primary_node_count
 
   management {
@@ -25,3 +25,4 @@ resource "google_container_node_pool" "primary_nodes" {
     ]
   }
 }
+

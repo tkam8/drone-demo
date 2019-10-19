@@ -20,3 +20,13 @@ variable "gke_instance_type" {
   type        = string
   default     = "n1-standard-1"
 }
+
+variable "cluster_name" {
+  description = "The name of a GKE Cluster."
+  type        = string
+}
+
+variable "zone" {
+  description = "The zone to create the gke cluster in. Must be within the subnetwork region."
+  type        = string
+}

@@ -17,3 +17,4 @@ output "private_persistence" {
   description = "The string of the private-persistence tag"
   value       = local.private_persistence
 }
+
