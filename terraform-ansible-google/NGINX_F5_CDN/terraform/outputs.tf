@@ -99,6 +99,6 @@ output "gke_cluster_name" {
 }
 
 output "gke_endpoint" {
-  description = "The IP address of this cluster's Kubernetes master"
+  description = "The IP address of this clusters Kubernetes master"
   value = module.gcp_gke_cluster1.gke_endpoint
 }
