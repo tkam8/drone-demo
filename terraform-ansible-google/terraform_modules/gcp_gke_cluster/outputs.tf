@@ -5,5 +5,5 @@ output "gke_endpoint" {
 
 output "gke_cluster_name" {
   description = "Name of GKE cluster"
-  value = "${var.name_prefix}-gke-cluster"
+  value = google_container_cluster.primary.name
 }
