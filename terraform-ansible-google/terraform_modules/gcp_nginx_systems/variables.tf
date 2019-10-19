@@ -47,7 +47,7 @@ variable "tag" {
 variable "source_image" {
   description = "The source image to build the VM using. Specified by path reference or by {{project}}/{{image-family}}"
   type        = string
-  default     = "nginx-plus-ubuntu1804-v2019070118"
+  default     = "https://www.googleapis.com/compute/v1/projects/nginx-public/global/images/nginx-plus-ubuntu1804-v2019070118"
 }
 
 variable "startup_script" {
