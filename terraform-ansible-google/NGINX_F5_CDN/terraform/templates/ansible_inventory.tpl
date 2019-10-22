@@ -13,7 +13,7 @@ ${gcp_gke_cluster_name}
 
 [gcp_nginx_systems:vars]
 ansible_python_interpreter=/usr/bin/python3
-ansible_user=ubuntu
+ansible_user=f5user
 ansible_ssh_private_key_file=/tmp/gcp_key
 
 [F5_systems:vars]
