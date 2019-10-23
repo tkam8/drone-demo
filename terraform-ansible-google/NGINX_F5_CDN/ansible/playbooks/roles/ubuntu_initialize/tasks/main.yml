@@ -15,7 +15,7 @@
 #   apt: 
 #     name=nginx state=latest
 
-- name: start nginx
-  service:
-    name: nginx
-    state: started
+# - name: start nginx
+#   service:
+#     name: nginx
+#     state: started
