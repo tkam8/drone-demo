@@ -1,5 +1,11 @@
 ---
 
+# Display facts on gke cluster
+- name: Display all variables/facts known for a host
+  debug:
+    var: hostvars[gke_systems]
+    verbosity: 4
+
 # Username and password will be grabbed from env var K8S_AUTH_USERNAME and K8S_AUTH_PASSWORD
 - name: Create a k8s namespace
   k8s:
