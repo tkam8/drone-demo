@@ -5,10 +5,11 @@
   k8s:
     name: upstream2
     api_version: v1
+    host: '{{gke_url}}'
     kind: Namespace
     state: present
 
-- name: Create a NGINX pod by reading the definition from a local file
+- name: Create a NGINX pod and expose by reading the definition from a local file
   k8s:
     state: present
     src: /manifest_files/pod_nginx.yml

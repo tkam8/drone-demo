@@ -7,7 +7,6 @@
   become_method: sudo
   connection: ssh
   gather_facts: true
- 
   roles: 
     - ubuntu_initialize
 
@@ -25,6 +24,7 @@
 
 - name: GKE f5-hello-world
   hosts: gke_systems
+  connection: local
   gather_facts: true
   roles:
    - app1_gke_onboarding

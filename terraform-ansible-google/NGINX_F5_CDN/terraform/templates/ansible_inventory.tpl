@@ -2,7 +2,7 @@
 ${gcp_nginx_data}
 
 [gke_systems]
-${gcp_gke_endpoint}
+${gcp_gke_endpoint}  gke_url=https://${gcp_gke_endpoint}
 
 [gke_name]
 ${gcp_gke_cluster_name}
