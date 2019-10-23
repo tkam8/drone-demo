@@ -11,11 +11,11 @@
     upgrade=yes
     update_cache=yes
  
-- name: ensure nginx is at the latest version
-  apt: 
-    name=nginx state=latest
+# - name: ensure nginx is at the latest version
+#   apt: 
+#     name=nginx state=latest
 
 - name: start nginx
   service:
     name: nginx
-    state: start
+    state: started
