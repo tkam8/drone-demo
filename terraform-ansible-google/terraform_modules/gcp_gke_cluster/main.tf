@@ -37,7 +37,7 @@ data "google_project" "project" {}
 
 resource "local_file" "kubeconfig" {
   content  = templatefile("./templates/kubeconfig-template.yaml", {
-    project_name    = data.google_project.project_id
+    project_name    = data.google_project.project.project_id
     zone            = var.zone
     cluster_name    = google_container_cluster.primary.name
     user_name       = google_container_cluster.primary.master_auth[0].username
