@@ -13,4 +13,4 @@
 - name: Create a NGINX pod and expose by reading the definition from a local file
   k8s:
     state: present
-    src: "{{ lookup('template', 'templates/pod_nginx.yml')}}"
+    src: "templates/pod_nginx.yml"
