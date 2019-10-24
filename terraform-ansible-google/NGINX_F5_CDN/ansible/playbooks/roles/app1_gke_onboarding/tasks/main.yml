@@ -6,6 +6,7 @@
     name: upstream2
     api_version: v1
     host: '{{gke_url}}'
+    kubeconfig: /tmp/kubeconfig
     kind: Namespace
     state: present
 
