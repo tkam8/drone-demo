@@ -94,6 +94,7 @@ module "gcp_nginx1" {
 # Setup variables for the Ansible inventory
 # -------------------------
 
+# Below is the "old" way
 # data "template_file" "ansible_inventory" {
 #   template = file("./templates/ansible_inventory.tpl")
 #   vars = {
@@ -121,6 +122,7 @@ resource "local_file" "ansible_inventory_file" {
   filename = "../ansible/playbooks/inventory/hosts"
 }
 
+# Below is the "old" way
 # data "template_file" "ansible_f5_vars" {
 #   template = file("./templates/ansible_f5_vars.tpl")
 #   vars = {
