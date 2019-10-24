@@ -36,7 +36,7 @@ data "google_project" "project" {}
 # Setup kubeconfig
 
 resource "local_file" "kubeconfig" {
-  content  = templatefile("./templates/kubeconfig-template.yaml", {
+  content  = templatefile("${path.module}/templates/kubeconfig-template.yaml", {
     project_name    = data.google_project.project.project_id
     zone            = var.zone
     cluster_name    = google_container_cluster.primary.name

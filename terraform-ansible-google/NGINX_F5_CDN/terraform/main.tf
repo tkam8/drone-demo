@@ -112,7 +112,7 @@ module "gcp_nginx1" {
 # }
 
 resource "local_file" "ansible_inventory_file" {
-  content  = templatefile("./templates/ansible_inventory.tpl", {
+  content  = templatefile("${path.module}/templates/ansible_inventory.tpl", {
     #gcp_F5_public_ip     = module.gcp_f5_standalone.f5_public_ip
     #gcp_F5_private_ip    = module.gcp_f5_standalone.f5_private_ip
     gcp_nginx_data        = module.gcp_nginx1.nginx_public_ip
@@ -136,7 +136,7 @@ resource "local_file" "ansible_inventory_file" {
 # }
 
 resource "local_file" "ansible_f5_vars_file" {
-  content  = templatefile("./templates/ansible_f5_vars.tpl", {
+  content  = templatefile("${path.module}/templates/ansible_f5_vars.tpl", {
     gcp_tag_value = var.app_tag_value
   })
   filename = "../ansible/playbooks/group_vars/F5_systems/vars"
