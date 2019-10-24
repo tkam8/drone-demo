@@ -34,7 +34,7 @@ spec:
   externalTrafficPolicy: Cluster
   ports:
     # Inside the cluster, what port does the service expose?
-    port: 80
+  - port: 80
     protocol: TCP
     # Which port do pods selected by this service expose?
     targetPort: 80
