@@ -1,4 +1,12 @@
 ---
 
-# Configure nginx 
+# Configure nginx with proxy_pass and proxy_cache
+
+- name: Setup nginx conf
+  template:
+    src=nginx.conf.tpl
+    dest=/etc/nginx/conf.d/upstream_test.conf
+  notify: restart nginx
+
+
 
