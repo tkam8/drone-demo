@@ -15,9 +15,11 @@ spec:
     metadata:
       labels:
         app: nginx-upstream2
-  containers:
-  - image: nginx
-    name: nginx
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx-upstream2
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 ---
