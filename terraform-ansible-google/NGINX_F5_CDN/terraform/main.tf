@@ -94,6 +94,7 @@ module "gcp_nginx1" {
 # Setup variables for the Ansible inventory
 # -------------------------
 
+# Below is the "old" way
 # data "template_file" "ansible_inventory" {
 #   template = file("./templates/ansible_inventory.tpl")
 #   vars = {
@@ -111,7 +112,7 @@ module "gcp_nginx1" {
 # }
 
 resource "local_file" "ansible_inventory_file" {
-  content  = templatefile("./templates/ansible_inventory.tpl", {
+  content  = templatefile("${path.module}/templates/ansible_inventory.tpl", {
     #gcp_F5_public_ip     = module.gcp_f5_standalone.f5_public_ip
     #gcp_F5_private_ip    = module.gcp_f5_standalone.f5_private_ip
     gcp_nginx_data        = module.gcp_nginx1.nginx_public_ip
@@ -121,6 +122,7 @@ resource "local_file" "ansible_inventory_file" {
   filename = "../ansible/playbooks/inventory/hosts"
 }
 
+# Below is the "old" way
 # data "template_file" "ansible_f5_vars" {
 #   template = file("./templates/ansible_f5_vars.tpl")
 #   vars = {
@@ -134,7 +136,7 @@ resource "local_file" "ansible_inventory_file" {
 # }
 
 resource "local_file" "ansible_f5_vars_file" {
-  content  = templatefile("./templates/ansible_f5_vars.tpl", {
+  content  = templatefile("${path.module}/templates/ansible_f5_vars.tpl", {
     gcp_tag_value = var.app_tag_value
   })
   filename = "../ansible/playbooks/group_vars/F5_systems/vars"

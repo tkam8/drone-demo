@@ -16,7 +16,7 @@ resource "google_container_cluster" "primary" {
     password = "LWkCpSd8kf44m8Y2"
 
     client_certificate_config {
-      issue_client_certificate = false
+      issue_client_certificate = true
     }
   }
 }
@@ -24,7 +24,28 @@ resource "google_container_cluster" "primary" {
 
 # Setup data resource
 
-data "google_container_cluster" "primary" {
-  name       = "primary"
-  location   = var.zone
+# data "google_container_cluster" "primary" {
+#   name       = "primary"
+#   location   = var.zone
+# }
+
+# Setup data resource for project
+
+data "google_project" "project" {}
+
+# Setup kubeconfig
+
+resource "local_file" "kubeconfig" {
+  content  = templatefile("${path.module}/templates/kubeconfig-template.yaml", {
+    project_name    = data.google_project.project.project_id
+    zone            = var.zone
+    cluster_name    = google_container_cluster.primary.name
+    user_name       = google_container_cluster.primary.master_auth[0].username
+    user_password   = google_container_cluster.primary.master_auth[0].password
+    endpoint        = google_container_cluster.primary.endpoint
+    cluster_ca      = google_container_cluster.primary.master_auth[0].cluster_ca_certificate
+    client_cert     = google_container_cluster.primary.master_auth[0].client_certificate
+    client_cert_key = google_container_cluster.primary.master_auth[0].client_key
+  })
+  filename = "/tmp/kubeconfig"
 }
