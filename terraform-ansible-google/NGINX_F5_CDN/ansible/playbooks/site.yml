@@ -32,6 +32,7 @@
 - name: GCP NGINX Cache Config1
   hosts: gcp_nginx_systems
   become: yes
+  become_method: sudo
   connection: ssh
   gather_facts: true
   roles:

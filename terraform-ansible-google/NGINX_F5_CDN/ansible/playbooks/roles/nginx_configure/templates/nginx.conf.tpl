@@ -1,5 +1,5 @@
 upstream nginxServers {
-    server 10.60.1.2;
+    server 10.60.0.11;
 }
 
 proxy_cache_path /data/nginx/cache levels=1:2 keys_zone=upstream_cache:20m inactive=5m max_size=2G;
