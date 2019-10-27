@@ -3,10 +3,6 @@
 # These variables are expected to be passed in by the operator
 # -------------------------
 
-# variable "instance_name" {
-#   description = "The name of the VM instance"
-#   type        = string
-# }
 
 variable "name_prefix" {
   description = "A name prefix used in resource names to ensure uniqueness across a project."
@@ -33,8 +29,8 @@ variable "f5_instance_type" {
   type        = string
 }
 
-variable "nginx_instance_type" {
-  description = "The machine type of the instance."
+variable "app_tag_value" {
+  description = "Value for compute instance label."
   type        = string
 }
 

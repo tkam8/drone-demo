@@ -11,7 +11,7 @@ data "google_compute_subnetwork" "private_subnetwork" {
   self_link = var.private_subnetwork
 }
 
-// Define tags as locals so they can be interpolated off of + exported
+// Define tags as locals 
 locals {
   public              = "public"
   public_restricted   = "public-restricted"

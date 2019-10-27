@@ -33,6 +33,11 @@ variable "project" {
   type        = string
 }
 
+variable "app_tag_value" {
+  description = "Value for compute instance label."
+  type        = string
+}
+
 # -------------------------
 # OPTIONAL PARAMETERS
 # Generally, these values won't need to be changed.
