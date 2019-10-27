@@ -7,7 +7,7 @@
       transport: cli
       user: admin
     commands: modify auth user admin password {{ ADMIN_PASSWORD }}
-    validate_certs: no
+    validate_certs: False
   delegate_to: localhost
 
 - name: enable iApps LX Package management in UI
@@ -18,5 +18,5 @@
       transport: cli
       user: admin
     commands: run /util bash -c "touch /var/config/rest/iapps/enable"
-    validate_certs: no
+    validate_certs: False
   delegate_to: localhost
