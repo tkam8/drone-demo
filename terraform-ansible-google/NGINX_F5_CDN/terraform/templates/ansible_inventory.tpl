@@ -18,3 +18,4 @@ ansible_ssh_private_key_file=/tmp/gcp_key
 
 [F5_systems:vars]
 ansible_user=admin
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
