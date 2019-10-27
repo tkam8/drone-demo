@@ -95,8 +95,8 @@ module "gcp_nginx1" {
 # -------------------------
 resource "local_file" "ansible_inventory_file" {
   content  = templatefile("${path.module}/templates/ansible_inventory.tpl", {
-    gcp_F5_public_ip     = module.gcp_f5_standalone.f5_public_ip
-    gcp_F5_private_ip    = module.gcp_f5_standalone.f5_private_ip
+    gcp_F5_public_ip      = module.gcp_f5_standalone.f5_public_ip
+    gcp_F5_private_ip     = module.gcp_f5_standalone.f5_private_ip
     gcp_nginx_data        = module.gcp_nginx1.nginx_public_ip
     gcp_gke_cluster_name  = module.gcp_gke_cluster1.gke_cluster_name
     gcp_gke_endpoint      = module.gcp_gke_cluster1.gke_endpoint

@@ -31,7 +31,5 @@ resource "google_compute_instance" "f5_bigip1" {
     }
   }
 
-  metadata {
-        startup-script = var.startup_script
-    } 
+  metadata_startup_script = var.startup_script
 }
