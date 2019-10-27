@@ -72,7 +72,6 @@ module "gcp_f5_standalone" {
   name_prefix       = var.name_prefix
   subnetwork        = module.cdn_network.public_subnetwork_name
   project           = var.project
-  region            = var.region
   zone              = var.zone
   f5_instance_type  = var.f5_instance_type
 }
