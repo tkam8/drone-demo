@@ -13,6 +13,10 @@ resource "google_compute_instance" "nginx1" {
   machine_type        = var.nginx_instance_type
   zone                = var.zone
 
+  labels = {
+    app = var.app_tag_value
+  }
+
   tags = [var.tag]
 
   boot_disk {

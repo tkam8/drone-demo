@@ -67,15 +67,14 @@ module "gcp_gke_nodepool1" {
 # Create F5
 # -------------------------
 
-# module "gcp_f5_standalone" {
-#   source            = "../../terraform_modules/gcp_f5_standalone_1NIC"
-#   name_prefix       = var.name_prefix
-#   subnetwork        = module.cdn_network.public_subnetwork_name
-#   project           = var.project
-#   region            = var.region
-#   zone              = var.zone
-#   f5_instance_type  = var.f5_instance_type
-# }
+module "gcp_f5_standalone" {
+  source            = "../../terraform_modules/gcp_f5_standalone_1NIC"
+  name_prefix       = var.name_prefix
+  subnetwork        = module.cdn_network.public_subnetwork_name
+  project           = var.project
+  zone              = var.zone
+  f5_instance_type  = var.f5_instance_type
+}
 
 # -------------------------
 # Create NGINX
@@ -88,52 +87,22 @@ module "gcp_nginx1" {
   project              = var.project
   zone                 = var.zone
   nginx_instance_type  = var.nginx_instance_type
+  app_tag_value        = var.app_tag_value
 }
 
 # -------------------------
 # Setup variables for the Ansible inventory
 # -------------------------
-
-# Below is the "old" way
-# data "template_file" "ansible_inventory" {
-#   template = file("./templates/ansible_inventory.tpl")
-#   vars = {
-#     #gcp_F5_public_ip     = module.gcp_f5_standalone.f5_public_ip
-#     #gcp_F5_private_ip    = module.gcp_f5_standalone.f5_private_ip
-#     gcp_nginx_data        = module.gcp_nginx1.nginx_public_ip
-#     gcp_gke_cluster_name  = module.gcp_gke_cluster1.gke_cluster_name
-#     gcp_gke_endpoint      = module.gcp_gke_cluster1.gke_endpoint
-#   }
-# }
-
-# resource "local_file" "ansible_inventory_file" {
-#   content  = data.template_file.ansible_inventory.rendered
-#   filename = "../ansible/playbooks/inventory/hosts"
-# }
-
 resource "local_file" "ansible_inventory_file" {
   content  = templatefile("${path.module}/templates/ansible_inventory.tpl", {
-    #gcp_F5_public_ip     = module.gcp_f5_standalone.f5_public_ip
-    #gcp_F5_private_ip    = module.gcp_f5_standalone.f5_private_ip
+    gcp_F5_public_ip      = module.gcp_f5_standalone.f5_public_ip
+    gcp_F5_private_ip     = module.gcp_f5_standalone.f5_private_ip
     gcp_nginx_data        = module.gcp_nginx1.nginx_public_ip
     gcp_gke_cluster_name  = module.gcp_gke_cluster1.gke_cluster_name
     gcp_gke_endpoint      = module.gcp_gke_cluster1.gke_endpoint
   })
   filename = "../ansible/playbooks/inventory/hosts"
 }
-
-# Below is the "old" way
-# data "template_file" "ansible_f5_vars" {
-#   template = file("./templates/ansible_f5_vars.tpl")
-#   vars = {
-#     gcp_tag_value = var.app_tag_value
-#   }
-# }
-
-# resource "local_file" "ansible_f5_vars_file" {
-#   content  = data.template_file.ansible_f5_vars.rendered
-#   filename = "../ansible/playbooks/group_vars/F5_systems/vars"
-# }
 
 resource "local_file" "ansible_f5_vars_file" {
   content  = templatefile("${path.module}/templates/ansible_f5_vars.tpl", {
