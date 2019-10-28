@@ -43,4 +43,14 @@ variable "gke_instance_type" {
   type        = string
 }
 
+## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
+variable "DO_URL" {
+  default = "https://github.com/F5Networks/f5-declarative-onboarding/releases/download/v1.8.0/f5-declarative-onboarding-1.8.0-2.noarch.rpm"
+}
+
+## Please check and update the latest AS3 URL from https://github.com/F5Networks/f5-appsvcs-extension/releases/latest 
+variable "AS3_URL" {
+  default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.15.0/f5-appsvcs-3.15.0-6.noarch.rpm"
+}
+
 variable "app_tag_value" {}
