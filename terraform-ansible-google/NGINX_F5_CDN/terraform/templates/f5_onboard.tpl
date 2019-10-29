@@ -33,6 +33,7 @@ do
   sleep 10
 done
 
+mkdir -p ${libs_dir}
 # Could be pre-packaged or hosted internally
 curl -o /config/cloud/f5-cloud-libs.tar.gz --silent --fail --retry 60 -L https://github.com/F5Networks/f5-cloud-libs/archive/v4.11.0.tar.gz
 tar xvfz /config/cloud/f5-cloud-libs.tar.gz -C ${libs_dir}/
@@ -70,8 +71,6 @@ DO_URL='${DO_URL}'
 DO_FN=$(basename "$DO_URL")
 AS3_URL='${AS3_URL}'
 AS3_FN=$(basename "$AS3_URL")
-
-mkdir -p ${libs_dir}
 
 echo -e "\n"$(date) "Download Declarative Onboarding Pkg"
 curl -L -o ${libs_dir}/$DO_FN $DO_URL
