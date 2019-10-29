@@ -29,6 +29,22 @@ variable "f5_instance_type" {
   type        = string
 }
 
+variable libs_dir { 
+  default = "/config/cloud/google" 
+}
+
+variable onboard_log { 
+  default = "/var/log/startup-script.log" 
+}
+
+variable AS3_URL {
+  type = "string"
+}
+
+variable DO_URL {
+  type = "string"
+}
+
 # -------------------------
 # OPTIONAL PARAMETERS
 # Generally, these values won't need to be changed.

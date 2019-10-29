@@ -74,6 +74,8 @@ module "gcp_f5_standalone" {
   project           = var.project
   zone              = var.zone
   f5_instance_type  = var.f5_instance_type
+  AS3_URL           = var.AS3_URL
+  DO_URL            = var.DO_URL
 }
 
 # -------------------------
