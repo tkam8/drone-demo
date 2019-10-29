@@ -29,14 +29,6 @@ variable "f5_instance_type" {
   type        = string
 }
 
-variable libs_dir { 
-  default = "/config/cloud/google" 
-}
-
-variable onboard_log { 
-  default = "/var/log/startup-script.log" 
-}
-
 variable AS3_URL {
   type = "string"
 }
@@ -62,10 +54,18 @@ variable "source_image" {
   default     = "https://www.googleapis.com/compute/v1/projects/f5-7626-networks-public/global/images/f5-hourly-bigip-14-1-0-1-0-0-7-best-200mbps"
 }
 
+variable libs_dir { 
+  default = "/config/cloud/google" 
+}
+
+variable onboard_log { 
+  default = "/var/log/startup-script.log" 
+}
+
 variable "startup_script" {
   description = "The script to be executed when the F5 starts. It can be used to install additional software and/or configure the host."
   type        = string
-  default     = ""
+  default     = "${data.template_file.f5_bigip_onboard.rendered}"
 }
 
 variable "static_ip" {
