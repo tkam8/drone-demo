@@ -62,12 +62,6 @@ variable onboard_log {
   default = "/var/log/startup-script.log" 
 }
 
-variable "startup_script" {
-  description = "The script to be executed when the F5 starts. It can be used to install additional software and/or configure the host."
-  type        = string
-  default     = "${data.template_file.f5_bigip_onboard.rendered}"
-}
-
 variable "static_ip" {
   description = "A static IP address to attach to the instance. The default will allocate an ephemeral IP"
   type        = string
