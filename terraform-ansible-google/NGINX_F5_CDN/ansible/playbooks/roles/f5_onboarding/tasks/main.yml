@@ -27,7 +27,7 @@
     level: nominal
     provider:
       server: "{{ inventory_hostname }}"
-      server_port: 8443
+      server_port: "{{ ADMIN_HTTPS_PORT}}"
       user: "{{ ADMIN_USER }}"
       password: "{{ ADMIN_PASSWORD }}"
     validate_certs: no
