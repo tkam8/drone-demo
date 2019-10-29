@@ -27,7 +27,7 @@
     level: nominal
     provider:
       server: "{{ inventory_hostname }}"
-      transport: cli
+      server_port: 8443
       user: "{{ ADMIN_USER }}"
       password: "{{ ADMIN_PASSWORD }}"
   delegate_to: localhost
