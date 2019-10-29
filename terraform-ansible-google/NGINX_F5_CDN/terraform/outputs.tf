@@ -73,15 +73,15 @@ output "private_persistence" {
 # Instance Info (primarily for testing)
 # -------------------------
 
-# output "f5_public_ip" {
-#   description = "Public IP of F5 device"
-#   value = module.gcp_f5_standalone.google_compute_instance.network_interface.0.access_config.0.nat_ip
-# }
+output "f5_public_ip" {
+  description = "Public IP of F5 device"
+  value = module.gcp_f5_standalone.f5_public_ip
+}
 
-# output "f5_private_ip" {
-#   description = "Private IP of F5 device"
-#   value = module.gcp_f5_standalone.google_compute_instance.network_interface.0.network_ip
-# }
+output "f5_private_ip" {
+  description = "Private IP of F5 device"
+  value = module.gcp_f5_standalone.f5_private_ip
+}
 
 output "nginx_public_ip" {
   description = "Public IP of NGINX device"

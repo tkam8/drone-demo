@@ -20,3 +20,15 @@
     commands: run /util bash -c "touch /var/config/rest/iapps/enable"
     validate_certs: no
   delegate_to: localhost
+
+- name: Provision ASM at "nominal" level
+  bigip_provision:
+    module: asm
+    level: nominal
+    provider:
+      server: "{{ inventory_hostname }}"
+      server_port: "{{ ADMIN_HTTPS_PORT}}"
+      user: "{{ ADMIN_USER }}"
+      password: "{{ ADMIN_PASSWORD }}"
+    validate_certs: no
+  delegate_to: localhost
