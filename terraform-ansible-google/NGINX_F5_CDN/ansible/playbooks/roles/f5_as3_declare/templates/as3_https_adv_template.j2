@@ -24,7 +24,7 @@
                         "pool": "{{ as3_pool_name }}",
                         "securityLogProfiles": [
                             {
-                                "bigip": "/Common/Log all requests", 
+                                "bigip": "/Common/Log all requests" 
                             },
                             {
                                 "bigip": "/Common/telemetry"
@@ -42,7 +42,7 @@
                         ],
                         "members": [
                             {
-                              "servicePort": 8081,
+                              "servicePort": 80,
                               "addressDiscovery": "gce",
                               "updateInterval": 10,
                               "tagKey": "app",
@@ -51,7 +51,7 @@
                               "region": "asia-northeast1",
                               "encodedCredentials": "{{ GCP_CREDS_RO }}",
                               "credentialUpdate": false
-                          },
+                          }
                         ]
                     },
                     "{{ as3_waf_name }}": {
@@ -76,5 +76,4 @@
                 }
             }
         }
-    }
 }
