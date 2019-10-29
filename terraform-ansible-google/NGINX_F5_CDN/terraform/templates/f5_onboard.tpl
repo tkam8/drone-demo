@@ -33,6 +33,36 @@ do
   sleep 10
 done
 
+# Could be pre-packaged or hosted internally
+curl -o /config/cloud/f5-cloud-libs.tar.gz --silent --fail --retry 60 -L https://github.com/F5Networks/f5-cloud-libs/archive/v4.11.0.tar.gz
+tar xvfz /config/cloud/f5-cloud-libs.tar.gz -C ${libs_dir}/
+mv ${libs_dir}/f5-cloud-libs-* ${libs_dir}/f5-cloud-libs
+mkdir ${libs_dir}/f5-cloud-libs/node_modules
+tar xvfz /config/cloud/f5-cloud-libs-aws.tar.gz -C ${libs_dir}/f5-cloud-libs/node_modules
+
+### BEGIN BASIC ONBOARDING 
+# WAIT FOR MCPD (DATABASE) TO BE UP TO BEGIN F5 CONFIG
+. ${libs_dir}/f5-cloud-libs/scripts/util.sh
+wait_for_bigip
+
+# CHECK TO SEE NETWORK IS READY AGAIN - github.com was not resolvable sometimes at this stage
+CNT=0
+while true
+do
+  STATUS=$(curl -s -k -I example.com | grep HTTP)
+  if [[ $STATUS == *"200"* ]]; then
+    echo "Got 200! VE is Ready!"
+    break
+  elif [ $CNT -le 10 ]; then
+    echo "Status code: $STATUS  Not done yet..."
+    CNT=$[$CNT+1]
+  else
+    echo "GIVE UP..."
+    break
+  fi
+  sleep 10
+done
+
 ### DOWNLOAD ONBOARDING PKGS
 # Could be pre-packaged or hosted internally
 
