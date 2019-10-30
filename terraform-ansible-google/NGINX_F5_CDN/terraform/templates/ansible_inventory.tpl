@@ -16,7 +16,7 @@ ansible_python_interpreter=/usr/bin/python3
 ansible_user=f5user
 ansible_ssh_private_key_file=/tmp/gcp_key
 
-[gcp_systems:vars]
+[gke_systems:vars]
 kubeconfig=/tmp/kubeconfig
 
 [F5_systems:vars]
