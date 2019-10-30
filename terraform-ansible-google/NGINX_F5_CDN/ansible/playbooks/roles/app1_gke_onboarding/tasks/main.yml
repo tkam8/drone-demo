@@ -6,14 +6,14 @@
     name: upstream2
     api_version: v1
     host: "{{ gke_url }}"
-    kubeconfig: "{{ KUBECONFIG_1 }}"
+    kubeconfig: "{{ kubeconfig }}"
     kind: Namespace
     state: present
 
 - name: Create a NGINX pod and expose by reading the definition from a local file
   k8s:
     state: present
-    kubeconfig: "{{ KUBECONFIG_1 }}"
+    kubeconfig: "{{ kubeconfig }}"
     src: "/home/tfansible/NGINX-F5-CDN/terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/roles/app1_gke_onboarding/templates/pod_nginx.yml"
 
 - name: Get NGINX service
@@ -22,7 +22,7 @@
     kind: Service
     name: nginx-upstream2
     namespace: upstream2
-    kubeconfig: "{{ KUBECONFIG_1 }}"
+    kubeconfig: "{{ kubeconfig }}"
   register: nginx_svc
 
 - name: Debug registered var containing service info
