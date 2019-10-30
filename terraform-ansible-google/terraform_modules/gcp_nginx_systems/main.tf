@@ -17,7 +17,7 @@ resource "google_compute_instance" "nginx1" {
     app = var.app_tag_value
   }
 
-  tags = [var.tag]
+  tags = var.tag
 
   boot_disk {
     initialize_params {

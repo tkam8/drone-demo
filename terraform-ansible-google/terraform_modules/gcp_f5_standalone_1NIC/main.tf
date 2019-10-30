@@ -29,7 +29,7 @@ resource "google_compute_instance" "f5_bigip1" {
   machine_type = var.f5_instance_type
   zone         = var.zone
 
-  tags = [var.tag]
+  tags = var.tag
 
   boot_disk {
     initialize_params {

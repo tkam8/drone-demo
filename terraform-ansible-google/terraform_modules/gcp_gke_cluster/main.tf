@@ -20,7 +20,9 @@ resource "google_container_cluster" "primary" {
     }
   }
   
-  tags = var.tag
+  node_config {
+      tags = var.tag
+  }
 }
 
 
