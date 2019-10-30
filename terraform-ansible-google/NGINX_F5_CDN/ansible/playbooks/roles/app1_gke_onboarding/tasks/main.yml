@@ -39,5 +39,7 @@
 
 - name: Generate list of NGINX endpoints
   set_fact: 
-    ep_list: "{{ [nginx_ep.resources.subsets.addresses.ip, nginx_ep.resources.subsets.ports.port]|join(':') }}"
+    ep_list: "{{ nginx_ep.resources[0] }}"
 
+- name: debug 
+  debug: var=ep_list
