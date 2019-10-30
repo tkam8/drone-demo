@@ -39,6 +39,5 @@
 
 - name: Generate list of NGINX endpoints
   set_fact: 
-    ep_list: resources.kind
-  with_items: "{{ nginx_ep.results }}"
+    ep_list: "{{ nginx_ep|join({'resources': {'subsets': {'addresses': {'ip'}}}},{'resources': {'subsets': {'ports': {'port'}}}}) }}"
 
