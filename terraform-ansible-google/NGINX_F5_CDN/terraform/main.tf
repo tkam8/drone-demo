@@ -109,7 +109,9 @@ resource "local_file" "ansible_inventory_file" {
 resource "local_file" "ansible_f5_vars_file" {
   content  = templatefile("${path.module}/templates/ansible_f5_vars.tpl", {
     gcp_tag_value = var.app_tag_value
-    gcp_f5_pool_members = join("','", module.gcp_nginx1.nginx_private_ip)
+    #use below var for multiple nginx deployements
+    #gcp_f5_pool_members = join("','", module.gcp_nginx1.nginx_private_ip)
+    gcp_f5_pool_members = module.gcp_nginx1.nginx_private_ip
   })
   filename = "../ansible/playbooks/group_vars/F5_systems/vars"
 }
