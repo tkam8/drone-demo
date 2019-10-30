@@ -43,9 +43,9 @@ variable DO_URL {
 # -------------------------
 
 variable "tag" {
-  description = "The GCP network tag to apply to the F5 for firewall rules. Defaults to 'public', the expected public tag of this module."
+  description = "The GCP network tag to apply to the F5 for firewall rules. Defaults to 'public-restricted'"
   type        = string
-  default     = "public"
+  default     = "public-restricted"
 }
 
 variable "source_image" {
