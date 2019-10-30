@@ -53,4 +53,7 @@ variable "AS3_URL" {
   default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.15.0/f5-appsvcs-3.15.0-6.noarch.rpm"
 }
 
-variable "app_tag_value" {}
+variable "app_tag_value" {
+  description = "The value used in the instance label, for service discovery (optional)"
+  default = "terry"
+}
