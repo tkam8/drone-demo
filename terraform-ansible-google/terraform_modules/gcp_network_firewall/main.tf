@@ -23,22 +23,22 @@ locals {
 # public - allow ingress from anywhere
 # -------------------------
 
-resource "google_compute_firewall" "public_allow_all_inbound" {
-  name = "${var.name_prefix}-public-allow-ingress"
+# resource "google_compute_firewall" "public_allow_all_inbound" {
+#   name = "${var.name_prefix}-public-allow-ingress"
 
-  project = var.project
-  network = var.network
+#   project = var.project
+#   network = var.network
 
-  target_tags   = [local.public]
-  direction     = "INGRESS"
-  source_ranges = ["0.0.0.0/0"]
+#   target_tags   = [local.public]
+#   direction     = "INGRESS"
+#   source_ranges = ["0.0.0.0/0"]
 
-  priority = "1000"
+#   priority = "1000"
 
-  allow {
-    protocol = "all"
-  }
-}
+#   allow {
+#     protocol = "all"
+#   }
+# }
 
 # -------------------------
 # public - allow ingress from specific sources
