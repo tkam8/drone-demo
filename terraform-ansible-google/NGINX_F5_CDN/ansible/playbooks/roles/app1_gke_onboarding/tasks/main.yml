@@ -16,15 +16,29 @@
     kubeconfig: "{{ kubeconfig }}"
     src: "/home/tfansible/NGINX-F5-CDN/terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/roles/app1_gke_onboarding/templates/pod_nginx.yml"
 
-- name: Get NGINX service
+# - name: Get NGINX service
+#   k8s_facts:
+#     api_version: v1
+#     kind: Service
+#     name: nginx-upstream2
+#     namespace: upstream2
+#     kubeconfig: "{{ kubeconfig }}"
+#   register: nginx_svc
+
+- name: Get NGINX endpoints for deployment created earlier
   k8s_facts:
     api_version: v1
-    kind: Service
+    kind: Endpoints
     name: nginx-upstream2
     namespace: upstream2
     kubeconfig: "{{ kubeconfig }}"
-  register: nginx_svc
+  register: nginx_ep
 
-- name: Debug registered var containing service info
-  debug: var=nginx_svc
+- name: debug 
+  debug: var=nginx_ep
+
+- name: Generate list of NGINX endpoints
+  set_fact: 
+    ep_list: resources.kind
+  with_items: "{{ nginx_ep.results }}"
 
