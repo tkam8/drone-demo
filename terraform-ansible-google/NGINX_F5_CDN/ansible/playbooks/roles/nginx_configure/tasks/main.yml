@@ -2,10 +2,16 @@
 
 # Configure nginx with proxy_pass and proxy_cache
 
+- name: Display all variables/facts known for the gke_systems group inventory
+  debug:
+    var: "{{ hostvars }}"
+    with_items: groups['gke_systems']
+    verbosity: 4
+
 - name: Setup nginx conf
   # Setting the upstream var used in the template to a var set in a previous play
   vars:
-    upstreams: "{{ hostvars[item]['ep_list'] }}"
+    upstreams: "{{ hostvars['ep_list'] }}"
     with_items: groups['gke_systems']
   template:
     src=nginx.conf.tpl
