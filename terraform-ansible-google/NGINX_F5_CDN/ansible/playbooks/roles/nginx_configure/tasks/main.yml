@@ -5,7 +5,8 @@
 - name: Setup nginx conf
   # Setting the upstream var used in the template to a var set in a previous play
   vars:
-    upstreams: "{{ hostvars[gke_systems]['ep_list'] }}"
+    upstreams: "{{ hostvars['ep_list'] }}"
+    with_items: groups['gke_systems']
   template:
     src=nginx.conf.tpl
     dest=/etc/nginx/conf.d/upstream_test.conf
