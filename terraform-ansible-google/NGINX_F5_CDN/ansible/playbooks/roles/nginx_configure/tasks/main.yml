@@ -4,6 +4,9 @@
 
 - name: Setup nginx conf
   template:
+    # Setting the upstream var used in the template to a var set in a previous play
+    vars:
+      upstreams: hostvars['gke_systems']['ep_list']
     src=nginx.conf.tpl
     dest=/etc/nginx/conf.d/upstream_test.conf
   notify: restart nginx
