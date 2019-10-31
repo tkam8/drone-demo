@@ -22,3 +22,7 @@ kubeconfig=/tmp/kubeconfig
 [F5_systems:vars]
 ansible_user=f5user
 ansible_ssh_private_key_file=/tmp/gcp_key
+
+[all:vars]
+# ep_list will be defined later using set_fact when NGINX endpoints are created
+ep_list=default('undefined')
