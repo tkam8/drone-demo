@@ -29,8 +29,8 @@ variable "zone" {
 # -------------------------
 
 variable "tag" {
-  description = "The GCP network tag to apply to the gke cluster host for firewall rules. Defaults to 'public', the expected public tag of this module."
-  type        = string
-  default     = "public"
+  description = "The GCP network tag to apply to the F5 for firewall rules. Defaults to 'public-restricted'"
+  type        = list
+  default     = ["public", "public-restricted", "private"]
 }
 

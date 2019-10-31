@@ -36,7 +36,8 @@ resource "google_compute_firewall" "public_allow_all_inbound" {
   priority = "1000"
 
   allow {
-    protocol = "all"
+    protocol = "tcp"
+    ports    = ["22", "8443"]
   }
 }
 

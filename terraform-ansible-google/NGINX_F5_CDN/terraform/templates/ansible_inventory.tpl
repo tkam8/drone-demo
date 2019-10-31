@@ -16,6 +16,13 @@ ansible_python_interpreter=/usr/bin/python3
 ansible_user=f5user
 ansible_ssh_private_key_file=/tmp/gcp_key
 
+[gke_systems:vars]
+kubeconfig=/tmp/kubeconfig
+
 [F5_systems:vars]
 ansible_user=f5user
 ansible_ssh_private_key_file=/tmp/gcp_key
+
+[all:vars]
+# ep_list is used for defining the upstreams in the NGINX configuration. It can be given a default value and can be overriden later using set_fact in a role i.e. NGINX endpoints creation role
+ep_list=default('undefined')

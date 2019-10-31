@@ -19,6 +19,10 @@ resource "google_container_cluster" "primary" {
       issue_client_certificate = true
     }
   }
+  
+  node_config {
+      tags = var.tag
+  }
 }
 
 
