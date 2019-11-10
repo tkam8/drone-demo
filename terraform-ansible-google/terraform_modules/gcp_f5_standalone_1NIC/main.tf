@@ -19,7 +19,7 @@ data "template_file" "f5_bigip_onboard" {
 }
 
 # -------------------------
-# Deploy F5 
+# Create F5 instance 
 # -------------------------
 
 
@@ -28,7 +28,7 @@ resource "google_compute_instance" "f5_bigip1" {
   name         = "${var.name_prefix}-bigip"
   machine_type = var.f5_instance_type
   zone         = var.zone
-
+  # tag to use for applying firewall rules 
   tags = var.tag
 
   boot_disk {
@@ -40,7 +40,7 @@ resource "google_compute_instance" "f5_bigip1" {
   network_interface {
     subnetwork = var.subnetwork
 
-    // If var.static_ip is set use that IP, otherwise this will generate an ephemeral IP
+    # If var.static_ip is set use that IP, otherwise this will generate an ephemeral IP
     access_config {
       nat_ip = var.static_ip
     }
