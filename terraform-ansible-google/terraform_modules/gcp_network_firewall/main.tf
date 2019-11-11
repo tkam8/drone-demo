@@ -3,15 +3,17 @@ terraform {
   required_version = ">= 0.12"
 }
 
+# Data resource for obtaining information about the public subnetwork
 data "google_compute_subnetwork" "public_subnetwork" {
   self_link = var.public_subnetwork
 }
 
+# Data resource for obtaining information about the private subnetwork
 data "google_compute_subnetwork" "private_subnetwork" {
   self_link = var.private_subnetwork
 }
 
-// Define tags as locals 
+# Define tags as locals 
 locals {
   public              = "public"
   public_restricted   = "public-restricted"
@@ -20,7 +22,7 @@ locals {
 }
 
 # -------------------------
-# public - allow ingress from anywhere
+# public - allow ingress from anywhere for specified ports
 # -------------------------
 
 resource "google_compute_firewall" "public_allow_all_inbound" {

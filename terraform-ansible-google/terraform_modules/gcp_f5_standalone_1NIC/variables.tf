@@ -10,7 +10,7 @@ variable "name_prefix" {
 }
 
 variable "subnetwork" {
-  description = "A reference (self_link) to the subnetwork to place the F5 in"
+  description = "A reference (self_link) to the subnetwork to place the F5 in."
   type        = string
 }
 
@@ -43,27 +43,29 @@ variable DO_URL {
 # -------------------------
 
 variable "tag" {
-  description = "The GCP network tag to apply to the F5 for firewall rules. Defaults to 'public-restricted'"
+  description = "The GCP network tags to apply to the F5 for firewall rules."
   type        = list
   default     = ["public", "public-restricted", "private"]
 }
 
 variable "source_image" {
-  description = "The source image to build the VM using. Specified by name {image}, path reference or by {{project}}/{{image-family}}"
+  description = "The source image to build the VM using. Enter in the self link here."
   type        = string
   default     = "https://www.googleapis.com/compute/v1/projects/f5-7626-networks-public/global/images/f5-hourly-bigip-14-1-0-1-0-0-7-best-200mbps"
 }
 
 variable libs_dir { 
-  default = "/config/cloud/google" 
+  description = "The full path on F5 where onboarding files will be saved."
+  default     = "/config/cloud/google" 
 }
 
 variable onboard_log { 
-  default = "/var/log/startup-script.log" 
+  description = "The log file used by onboarding scripts."
+  default     = "/var/log/startup-script.log" 
 }
 
 variable "static_ip" {
-  description = "A static IP address to attach to the instance. The default will allocate an ephemeral IP"
+  description = "A static IP address to attach to the instance. The default will allocate an ephemeral IP."
   type        = string
   default     = null
 }

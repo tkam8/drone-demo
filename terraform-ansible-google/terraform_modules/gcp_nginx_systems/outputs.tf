@@ -4,11 +4,11 @@ output "nginx_instance" {
 }
 
 output "nginx_public_ip" {
-  description = "The public IP of the nginx."
+  description = "The public IP of the nginx instance."
   value       = google_compute_instance.nginx1.network_interface[0].access_config[0].nat_ip
 }
 
 output "nginx_private_ip" {
-  description = "The private IP of the nginx."
+  description = "The private IP of the nginx instance."
   value       = google_compute_instance.nginx1.network_interface[0].network_ip
 }

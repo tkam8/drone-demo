@@ -44,13 +44,13 @@ variable "app_tag_value" {
 # -------------------------
 
 variable "tag" {
-  description = "The GCP network tag to apply to the F5 for firewall rules. Defaults to 'public-restricted'"
+  description = "The GCP network tags to apply to the F5 for firewall rules."
   type        = list
   default     = ["public", "public-restricted", "private"]
 }
 
 variable "source_image" {
-  description = "The source image to build the VM using. Specified by path reference or by {{project}}/{{image-family}}"
+  description = "The source image to build the VM using. Enter in the self link here."
   type        = string
   default     = "https://www.googleapis.com/compute/v1/projects/nginx-public/global/images/nginx-plus-ubuntu1804-v2019070118"
 }
@@ -62,7 +62,7 @@ variable "startup_script" {
 }
 
 variable "static_ip" {
-  description = "A static IP address to attach to the instance. The default will allocate an ephemeral IP"
+  description = "A static IP address to attach to the instance. The default will allocate an ephemeral IP."
   type        = string
   default     = null
 }

@@ -4,7 +4,7 @@ terraform {
 }
 
 # -------------------------
-# Create an NGINX instance 
+# Create NGINX instance 
 # -------------------------
 
 resource "google_compute_instance" "nginx1" {
@@ -12,11 +12,11 @@ resource "google_compute_instance" "nginx1" {
   name                = "${var.name_prefix}-nginx"
   machine_type        = var.nginx_instance_type
   zone                = var.zone
-
+  # Instance labels to apply to the instance
   labels = {
     app = var.app_tag_value
   }
-
+  # tag to use for applying firewall rules 
   tags = var.tag
 
   boot_disk {
@@ -28,7 +28,7 @@ resource "google_compute_instance" "nginx1" {
   network_interface {
     subnetwork = var.subnetwork
 
-    // If var.static_ip is set use that IP, otherwise this will generate an ephemeral IP
+    # If var.static_ip is set use that IP, otherwise this will generate an ephemeral IP
     access_config {
       nat_ip = var.static_ip
     }

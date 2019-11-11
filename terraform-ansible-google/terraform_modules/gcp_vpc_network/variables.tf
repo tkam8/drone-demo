@@ -30,7 +30,7 @@ variable "cidr_block" {
 }
 
 variable "cidr_subnetwork_width_delta" {
-  description = "The difference between your network and subnetwork netmask; an /16 network and a /20 subnetwork would be 4."
+  description = "The difference between your network and subnetwork netmask; a /16 network and a /20 subnetwork would be 4."
   type        = number
   default     = 4
 }
@@ -48,7 +48,7 @@ variable "secondary_cidr_block" {
 }
 
 variable "secondary_cidr_subnetwork_width_delta" {
-  description = "The difference between your network and subnetwork's secondary range netmask; an /16 network and a /20 subnetwork would be 4."
+  description = "The difference between your network and subnetwork's secondary range netmask; a /16 network and a /20 subnetwork would be 4."
   type        = number
   default     = 4
 }
