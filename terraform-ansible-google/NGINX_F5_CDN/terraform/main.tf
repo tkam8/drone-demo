@@ -112,6 +112,8 @@ resource "local_file" "ansible_f5_vars_file" {
     #use below var for multiple nginx deployements
     #gcp_f5_pool_members = join("','", module.gcp_nginx1.nginx_private_ip)
     gcp_f5_pool_members = module.gcp_nginx1.nginx_private_ip
+    gcp_gke_username = module.gcp_gke_cluster1.cluster_username
+    gcp_gke_password = module.gcp_gke_cluster1.cluster_password
   })
   filename = "../ansible/playbooks/group_vars/F5_systems/vars"
 }
