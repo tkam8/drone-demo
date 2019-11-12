@@ -102,3 +102,13 @@ output "gke_endpoint" {
   description = "The IP address of this clusters Kubernetes master"
   value = module.gcp_gke_cluster1.gke_endpoint
 }
+
+output "gke_username" {
+  description = "The username of this cluster"
+  value = module.gcp_gke_cluster1.cluster_username
+}
+
+output "gke_password" {
+  description = "The password of this cluster"
+  value = module.gcp_gke_cluster1.cluster_password
+}
