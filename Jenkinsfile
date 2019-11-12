@@ -6,13 +6,12 @@ pipeline {
         docker {
             image 'tkam8/tfansible:latest'
              //Mount the below items for use by Ansible and Terraform
-	           //gcp service account creds in json format
-	           //metadata ssh key for compute instance access via ssh
-	           //BYOCDN repo details in json format
-	          //pre-generated ansible vault file
+	         //gcp service account creds in json format
+	         //metadata ssh key for compute instance access via ssh
+	         //BYOCDN repo details in json format
+	         //pre-generated ansible vault file
             args '--entrypoint=' '-v /home/ubuntu/gcp/gcp_creds.json:/tmp/gcp_creds.json -v /home/ubuntu/gcp/gcp_ssh_key:/tmp/gcp_ssh_key -v /home/ubuntu/gcp/byocdn_user_repo.json:/tmp/user_repo.json -v /home/ubuntu/gcp/f5_gke_vault:/home/tfansible/NGINX-F5-CDN/terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/group_vars/F5_systems/f5_gke_vault'
         }
-        
     }
     stages {
         stage('Init') {
