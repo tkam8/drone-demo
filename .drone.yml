@@ -17,15 +17,15 @@ steps:
   - ls
 
 - name: Deploy Terraform
-    image: jmccann/drone-terraform:1
-    plan: true
-    root_dir: terraform-ansible-google/NGINX_F5_CDN/terraform/
-    remote:
-      backend: S3
-      config:
-        bucket: byocdn-drone-tf
-        key: byocdn.tfstate
-        region: ap-northeast-1
+  image: jmccann/drone-terraform:1
+  plan: true
+  root_dir: terraform-ansible-google/NGINX_F5_CDN/terraform/
+  remote:
+    backend: S3
+    config:
+      bucket: byocdn-drone-tf
+      key: byocdn.tfstate
+      region: ap-northeast-1
 
 - name: Apply Ansible playbook
   image: plugins/ansible:1
