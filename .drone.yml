@@ -17,7 +17,7 @@ steps:
   - ls
 
 - name: Deploy Terraform
-  image: jmccann/drone-terraform:1
+  image: jmccann/drone-terraform:6.1
   root_dir: terraform-ansible-google/NGINX_F5_CDN/terraform/
   plan: true
   remote:
