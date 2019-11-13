@@ -18,10 +18,10 @@ steps:
 
 - name: Deploy Terraform
   image: jmccann/drone-terraform:6.1
-  commands:
-  # Below pwd, ls commands are for debug purposes only
-  - pwd
-  - ls
+    commands:
+    # Below pwd, ls commands are for debug purposes only
+    - pwd
+    - ls
   root_dir: terraform-ansible-google/NGINX_F5_CDN/terraform/
   plan: true
   remote:
