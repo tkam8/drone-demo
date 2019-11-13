@@ -23,14 +23,13 @@ Remarks - Ansible
 * Ansible and Terraform are configured to pass IP addresses of upstream endpoints to the AS3 declaration for automating the population of pool member IPs. 
 * The AS3 declaration can be setup to do *Service Discovery* (OFF by default) to identify the NGINX instances deployed. To do so, AS3 needs to have access to your GCP infrastructure: It needs the base64 encoded private key. Ansible playbook is setup to look for 1 environment variable1: GCP_CREDS_RO. Make sure to setup this environment variables on the device triggering the ansible playbook
 * Optionally, you can update ansible/playbooks/group_vars/all file with the location of your private key
-* You MUST create a file called f5_gke_vault in ansible/playbooks/group_vars/F5_systems. You need to create this file yourself to store the admin password that will be used on your BIG-IP. The corresponding variables name to setup is: VAULT_ADMIN_PASSWORD and VAULT_GKE_ADMIN_PASSWORD. Example of f5_gke_vault file: 
+* You MUST create a file called f5_vault in ansible/playbooks/group_vars/F5_systems. You need to create this file yourself to store the admin password that will be used on your BIG-IP. The corresponding variables name to setup is: VAULT_ADMIN_PASSWORD. Example of f5_vault file: 
 
 ```yaml
 
     ---
 
     VAULT_ADMIN_PASSWORD: "myF5Password!"
-    VAULT_GKE_ADMIN_PASSWORD: "admin"
 
 
 ```
