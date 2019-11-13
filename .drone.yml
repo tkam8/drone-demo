@@ -19,10 +19,6 @@ steps:
 - name: Deploy Terraform
   image: jmccann/drone-terraform:1
   plan: true
-  commands:
-  # Below pwd, ls commands are for debug purposes only
-  - pwd
-  - ls
   root_dir: terraform-ansible-google/NGINX_F5_CDN/terraform/
   remote:
     backend: S3
@@ -33,9 +29,6 @@ steps:
 
 - name: Apply Ansible playbook
   image: plugins/ansible:1
-  commands:
-  - pwd
-  - ls
   settings:
     playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
