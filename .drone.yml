@@ -12,6 +12,9 @@ steps:
     GCP_SSH_KEY:
       from_secret: gcp_ssh_key
   commands:
+  - echo "sh pwd"
+  - echo "PATH is ${env.PATH}"
+  - ls
   - cd /home/tfansible/NGINX-F5-CDN/terraform-ansible-google/NGINX_F5_CDN/terraform/
   - terraform init -input=false
   - terraform apply -input=false -auto-approve
