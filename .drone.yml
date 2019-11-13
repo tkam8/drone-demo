@@ -12,6 +12,7 @@ steps:
     GCE_SSH_KEY:
       from_secret: gcp_ssh_key
   commands:
+  # Below pwd, ls, env commands are for debug purposes only
   - pwd
   - ls
   - env
