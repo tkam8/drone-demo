@@ -7,13 +7,14 @@ steps:
 - name: Deploy Terraform Ansible Container with keys
   image: tkam8/tfansible:latest
   environment:
-    GCP_CREDS:
+    GOOGLE_CREDENTIALS:
       from_secret: gcp_creds
-    GCP_SSH_KEY:
+    GCE_SSH_KEY:
       from_secret: gcp_ssh_key
   commands:
   - pwd
   - ls
+  - env
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
   - terraform init -input=false
   - terraform apply -input=false -auto-approve
