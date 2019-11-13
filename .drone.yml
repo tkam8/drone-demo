@@ -18,8 +18,8 @@ steps:
   - env
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
   - terraform init -input=false
-  - terraform apply -input=false -auto-approve
-  #- terraform destroy -force
+  #- terraform apply -input=false -auto-approve
+  - terraform destroy -force
 
 - name: Apply Ansible playbook
   image: plugins/ansible:1
