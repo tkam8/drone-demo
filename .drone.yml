@@ -18,8 +18,8 @@ steps:
 
 - name: Deploy Terraform
   image: jmccann/drone-terraform:1
-  plan: true
   root_dir: terraform-ansible-google/NGINX_F5_CDN/terraform/
+  plan: true
   remote:
     backend: S3
     config:
