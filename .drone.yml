@@ -4,7 +4,7 @@ name: default
 
 steps:
 
-- name: Deploy Terraform
+- name: Pull tfansible container
   image: tkam8/tfansible:latest
   environment:
     GOOGLE_CREDENTIALS:
@@ -12,14 +12,20 @@ steps:
     GCE_SSH_KEY:
       from_secret: gcp_ssh_key
   commands:
-  # Below pwd, ls, env commands are for debug purposes only
+  # Below pwd, ls commands are for debug purposes only
   - pwd
   - ls
-  - env
-  - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
-  - terraform init -input=false
-  #- terraform apply -input=false -auto-approve
-  - terraform destroy -force
+
+- name: Deploy Terraform
+    image: jmccann/drone-terraform:1
+    plan: true
+    root_dir: terraform-ansible-google/NGINX_F5_CDN/terraform/
+    remote:
+      backend: S3
+      config:
+        bucket: byocdn-drone-tf
+        key: byocdn.tfstate
+        region: ap-northeast-1
 
 - name: Apply Ansible playbook
   image: plugins/ansible:1
