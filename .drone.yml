@@ -30,6 +30,9 @@ steps:
 
 - name: Apply Ansible playbook
   image: plugins/ansible:2.0.0
+  commands:
+    - ls -lah /tmp/gcp
+    - cat /tmp/gcp/gcp_ssh_key
   settings:
     playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
