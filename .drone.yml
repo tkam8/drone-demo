@@ -29,6 +29,7 @@ steps:
     - mkdir /drone/src/gcp
     - echo -n "$GCE_SSH_KEY" > /drone/src/gcp/gcp_ssh_key
     - echo -n "$ANSIBLE_VAULT_PASS" > /drone/src/gcp/ansible_vault_password
+    - cat /drone/src/gcp/ansible_vault_password
     - chmod 600 /drone/src/gcp/gcp_ssh_key 
     - chmod 600 /drone/src/gcp/ansible_vault_password
 
