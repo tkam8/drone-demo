@@ -30,6 +30,7 @@ steps:
   commands: 
   # write the ssh key to disk
   - echo "$ANSIBLE_VAULT_PASS"
+  - echo $ANSIBLE_VAULT_PASS
   - mkdir /drone/src/gcp
   - echo -n "$GCE_SSH_KEY" > /drone/src/gcp/gcp_ssh_key
   - echo -n "$ANSIBLE_VAULT_PASS" > /drone/src/gcp/ansible_vault_password
