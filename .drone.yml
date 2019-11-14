@@ -22,7 +22,7 @@ steps:
 
 
 - name: Apply Ansible playbook
-  image: plugins/ansible:1
+  image: plugins/ansible:2.0.0
   environment:
     GOOGLE_CREDENTIALS:
       from_secret: gcp_creds
