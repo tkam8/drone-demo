@@ -11,6 +11,8 @@ steps:
       from_secret: gcp_creds
     GCE_SSH_KEY:
       from_secret: gcp_ssh_key
+    ANSIBLE_VAULT_PASS:
+      from secret: ansible_vault_password
   commands:
   # Below pwd, ls commands are for debug purposes only
   - pwd
@@ -26,16 +28,13 @@ steps:
     # write the ssh key to disk
     - mkdir /drone/src/gcp
     - echo -n "$GCE_SSH_KEY" > /drone/src/gcp/gcp_ssh_key
-    - chmod 600 /drone/src/gcp/gcp_ssh_key
+    - echo -n "$ANSIBLE_VAULT_PASS" > /drone/src/gcp/ansible_vault_password
+    - chmod 600 /drone/src/gcp/gcp_ssh_key /drone/src/gcp/ansible_vault_password
 
 - name: Apply Ansible playbook
-  image: plugins/ansible:2.0.0
-  settings:
-    playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
-    inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
-    vault_password:
-      from_secret: ansible_vault_password
-    verbose: 4
+  commands: 
+    - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
+    - ansible-playbook --inventory terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts --vault-password-file /drone/src/gcp/ansible_vault_password -vvvv terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
 
 trigger:
   branch:
