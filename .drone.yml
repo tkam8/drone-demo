@@ -24,15 +24,14 @@ steps:
   image: busybox:latest
   commands: 
     # write the ssh key to disk
-    - mkdir /tmp/gcp
-    - echo -n "$GCE_SSH_KEY" > /tmp/gcp/gcp_ssh_key
-    - chmod 600 /tmp/gcp/gcp_ssh_key
+    - mkdir /drone/src/gcp
+    - echo -n "$GCE_SSH_KEY" > /drone/src/gcp/gcp_ssh_key
+    - chmod 600 /drone/src/gcp/gcp_ssh_key
 
 - name: Apply Ansible playbook
   image: plugins/ansible:2.0.0
   commands:
-    - ls -lah /tmp/gcp
-    - cat /tmp/gcp/gcp_ssh_key
+    - ls -lah /drone/src/gcp
   settings:
     playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
