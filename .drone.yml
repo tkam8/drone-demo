@@ -25,19 +25,19 @@ steps:
 - name: SSH key preparation for Ansible Plugin
   image: busybox:latest
   commands: 
-    # write the ssh key to disk
-    - mkdir /drone/src/gcp
-    - echo -n "$GCE_SSH_KEY" > /drone/src/gcp/gcp_ssh_key
-    - echo -n "$ANSIBLE_VAULT_PASS" > /drone/src/gcp/ansible_vault_password
-    - cat /drone/src/gcp/ansible_vault_password
-    - chmod 600 /drone/src/gcp/gcp_ssh_key 
-    - chmod 600 /drone/src/gcp/ansible_vault_password
+  # write the ssh key to disk
+  - mkdir /drone/src/gcp
+  - echo -n "$GCE_SSH_KEY" > /drone/src/gcp/gcp_ssh_key
+  - echo -n "$ANSIBLE_VAULT_PASS" > /drone/src/gcp/ansible_vault_password
+  - cat /drone/src/gcp/ansible_vault_password
+  - chmod 600 /drone/src/gcp/gcp_ssh_key 
+  - chmod 600 /drone/src/gcp/ansible_vault_password
 
 - name: Apply Ansible playbook
   image: tkam8/tfansible:latest
   commands: 
-    - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
-    - ansible-playbook --inventory inventory/hosts --vault-password-file /drone/src/gcp/ansible_vault_password -vvvv site.yml
+  - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
+  - ansible-playbook --inventory inventory/hosts --vault-password-file /drone/src/gcp/ansible_vault_password -vvvv site.yml
 
 trigger:
   branch:
