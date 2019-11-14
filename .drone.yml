@@ -15,6 +15,7 @@ steps:
       from secret: ansible_vault_password
   commands:
   # Below pwd, ls commands are for debug purposes only
+  - echo "$ANSIBLE_VAULT_PASS"
   - pwd
   - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
@@ -24,13 +25,6 @@ steps:
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
-  environment:
-    GOOGLE_CREDENTIALS:
-      from_secret: gcp_creds
-    GCE_SSH_KEY:
-      from_secret: gcp_ssh_key
-    ANSIBLE_VAULT_PASS:
-      from secret: ansible_vault_password
   commands: 
   # write the ssh key to disk
   - echo "$ANSIBLE_VAULT_PASS"
