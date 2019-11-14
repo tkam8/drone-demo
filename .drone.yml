@@ -33,7 +33,7 @@ steps:
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
     vault_password:
       from_secret: ansible_vault_password
-    verbose: 2
+    verbose: 4
 
 trigger:
   branch:
