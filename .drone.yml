@@ -15,7 +15,9 @@ steps:
       from secret: ansible_vault_password
   commands:
   # Below pwd, ls commands are for debug purposes only
+  - env
   - echo "$ANSIBLE_VAULT_PASS"
+  - echo $ANSIBLE_VAULT_PASS
   - pwd
   - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
