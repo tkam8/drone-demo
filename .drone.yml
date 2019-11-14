@@ -36,6 +36,8 @@ steps:
 - name: Apply Ansible playbook
   image: tkam8/tfansible:latest
   commands: 
+  - ls -lah /drone/src/gcp/
+  - echo "$ANSIBLE_VAULT_PASS"
   - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
   - ansible-playbook --inventory inventory/hosts --vault-password-file /drone/src/gcp/ansible_vault_password -vvvv site.yml
 
