@@ -23,7 +23,7 @@ steps:
   #- terraform destroy -force
 
 - name: SSH key preparation for Ansible Plugin
-  image: busybox:latest
+  image: tkam8/tfansible:latest
   commands: 
   # write the ssh key to disk
   - mkdir /drone/src/gcp
