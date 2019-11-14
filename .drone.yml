@@ -22,6 +22,11 @@ steps:
 
 - name: Apply Ansible playbook
   image: plugins/ansible:1
+  environment:
+    GOOGLE_CREDENTIALS:
+      from_secret: gcp_creds
+    GCE_SSH_KEY:
+      from_secret: gcp_ssh_key
   settings:
     playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
