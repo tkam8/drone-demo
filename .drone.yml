@@ -20,14 +20,15 @@ steps:
   - terraform apply -input=false -auto-approve
   #- terraform destroy -force
 
+- name: SSH key preparation
+  image: busybox:latest
+  commands: 
+    # write the ssh key to disk
+    - echo -n "$GCE_SSH_KEY" > /tmp/gcp_ssh_key
+    - chmod 600 /tmp/gcp_ssh_key
 
 - name: Apply Ansible playbook
   image: plugins/ansible:2.0.0
-  environment:
-    GOOGLE_CREDENTIALS:
-      from_secret: gcp_creds
-    GCE_SSH_KEY:
-      from_secret: gcp_ssh_key
   settings:
     playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
