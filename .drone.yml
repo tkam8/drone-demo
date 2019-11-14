@@ -6,6 +6,7 @@ steps:
 
 - name: Pull tfansible container and Deploy Terraform
   image: tkam8/tfansible:latest
+  secrets: [ ansible_vault_password, gcp_creds, gcp_ssh_key ]
   environment:
     GOOGLE_CREDENTIALS:
       from_secret: gcp_creds
