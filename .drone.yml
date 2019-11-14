@@ -24,6 +24,7 @@ steps:
   image: busybox:latest
   commands: 
     # write the ssh key to disk
+    - mkdir /tmp
     - echo -n "$GCE_SSH_KEY" > /tmp/gcp_ssh_key
     - chmod 600 /tmp/gcp_ssh_key
 
