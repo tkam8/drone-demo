@@ -32,6 +32,7 @@ steps:
     - chmod 600 /drone/src/gcp/gcp_ssh_key /drone/src/gcp/ansible_vault_password
 
 - name: Apply Ansible playbook
+  image: tkam8/tfansible:latest
   commands: 
     - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
     - ansible-playbook --inventory terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts --vault-password-file /drone/src/gcp/ansible_vault_password -vvvv terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
