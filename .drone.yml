@@ -20,7 +20,7 @@ steps:
   - terraform apply -input=false -auto-approve
   #- terraform destroy -force
 
-- name: SSH key preparation
+- name: SSH key preparation for Ansible Plugin
   image: busybox:latest
   commands: 
     # write the ssh key to disk
@@ -30,8 +30,6 @@ steps:
 
 - name: Apply Ansible playbook
   image: plugins/ansible:2.0.0
-  commands:
-    - ls -lah /drone/src/gcp
   settings:
     playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
