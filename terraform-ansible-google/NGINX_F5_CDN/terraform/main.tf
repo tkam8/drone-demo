@@ -6,9 +6,16 @@ terraform {
 
 # Configure the Google Cloud provider
 provider "google" {
-  credentials = "${file("/tmp/gcp_creds.json")}"
   project     = var.project
   region      = var.region
+}
+
+# Configure the cloud storage for storing the state file
+terraform {
+  backend "gcs" {
+    bucket  = "byocdn-terraform-bucket"
+    prefix  = "terraform/state"
+  }
 }
 
 # -------------------------

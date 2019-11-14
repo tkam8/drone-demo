@@ -4,23 +4,32 @@ name: default
 
 steps:
 
-- name: Deploy Terraform Ansible Container with keys
+- name: Pull tfansible container and Deploy Terraform
   image: tkam8/tfansible:latest
   environment:
-    GCP_CREDS:
+    GOOGLE_CREDENTIALS:
       from_secret: gcp_creds
-    GCP_SSH_KEY:
+    GCE_SSH_KEY:
       from_secret: gcp_ssh_key
   commands:
-  - cd /home/tfansible/NGINX-F5-CDN/terraform-ansible-google/NGINX_F5_CDN/terraform/
+  # Below pwd, ls commands are for debug purposes only
+  - pwd
+  - ls
+  - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
   - terraform init -input=false
   - terraform apply -input=false -auto-approve
+  #- terraform destroy -force
 
 - name: Apply Ansible playbook
   image: plugins/ansible:1
+  environment:
+    GOOGLE_CREDENTIALS:
+      from_secret: gcp_creds
+    GCE_SSH_KEY:
+      from_secret: gcp_ssh_key
   settings:
-    playbook: /home/tfansible/NGINX-F5-CDN/terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
-    inventory: /home/tfansible/NGINX-F5-CDN/terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
+    playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
+    inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
     vault_password:
       from_secret: ansible_vault_password
     verbose: 2
