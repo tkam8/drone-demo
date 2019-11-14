@@ -14,6 +14,7 @@ provider "google" {
 terraform {
   backend "gcs" {
     bucket  = "byocdn-terraform-bucket"
+    prefix  = "terraform/state"
   }
 }
 
@@ -122,27 +123,4 @@ resource "local_file" "ansible_f5_vars_file" {
     gcp_gke_password = module.gcp_gke_cluster1.cluster_password
   })
   filename = "../ansible/playbooks/group_vars/F5_systems/vars"
-}
-
-# -------------------------
-# Setup Google Cloud Storage
-# -------------------------
-
-resource "google_storage_bucket" "terraform-state-store" {
-  name     = "byocdn-terraform-bucket"
-  location = "asia-northeast1"
-  storage_class = "REGIONAL"
-
-  versioning {
-    enabled = true
-  }
-
-  lifecycle_rule {
-    action {
-      type = "Delete"
-    }
-    condition {
-      num_newer_versions = 5
-    }
-  }
 }
