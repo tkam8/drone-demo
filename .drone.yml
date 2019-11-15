@@ -26,6 +26,11 @@ steps:
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
+  environment:
+    GCE_SSH_KEY:
+      from_secret: gcp_ssh_key
+    VAULT_PASS:
+      from_secret: ans_vault
   commands: 
   # write the ssh key to disk
   - echo $${VAULT_PASS}
