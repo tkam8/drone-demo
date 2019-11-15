@@ -13,10 +13,13 @@ steps:
       from_secret: gcp_creds
     GCE_SSH_KEY:
       from_secret: gcp_ssh_key
+    TEST1:
+      from_secret: test
   commands:
   # Below pwd, ls commands are for debug purposes only
   - env
   - echo $${ANSIBLE_VAULT_PASS}
+  - echo $${TEST1}
   - pwd
   - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
