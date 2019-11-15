@@ -29,7 +29,7 @@ steps:
       from_secret: gcp_ssh_key
   commands: 
   # write the ssh key to disk
-  - echo $${GCE_SSH_KEY}
+  - echo -n $${GCE_SSH_KEY}
   - mkdir /drone/src/gcp
   - echo $${GCE_SSH_KEY} > /drone/src/gcp/gcp_ssh_key
   - cat /drone/src/gcp/gcp_ssh_key
