@@ -30,6 +30,7 @@ steps:
       from_secret: gcp_ssh_key
   commands: 
   # write the ssh key to disk
+  - ls /drone/src/
   - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/group_vars/F5_systems/vars
   - mkdir /drone/src/gcp
   - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
