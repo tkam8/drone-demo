@@ -10,12 +10,6 @@ resource "google_container_cluster" "primary" {
  
   network    = var.network
   subnetwork = var.subnetwork
-
-  master_auth {
-    client_certificate_config {
-      issue_client_certificate = true
-    }
-  }
   
   node_config {
       tags = var.tag
