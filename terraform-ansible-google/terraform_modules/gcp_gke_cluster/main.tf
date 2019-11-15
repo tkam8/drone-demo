@@ -51,5 +51,5 @@ resource "local_file" "kubeconfig" {
     client_cert     = google_container_cluster.primary.master_auth[0].client_certificate
     client_cert_key = google_container_cluster.primary.master_auth[0].client_key
   })
-  filename = "/tmp/kubeconfig"
+  filename = "/drone/src/kubeconfig"
 }
