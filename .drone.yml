@@ -13,16 +13,8 @@ steps:
       from_secret: gcp_ssh_key
     VAULT_PASS:
       from_secret: ans_vault
-    SHORT_ENV:
-      from_secret: this_is_a_veryvery_long_secret_name
-    LONG_ENVIRONMENT_VARIABLE_NAME:
-      from_secret: shortname
   commands:
   # Below pwd, ls commands are for debug purposes only
-  - env
-  - echo $${VAULT_PASS}
-  - echo $${SHORT_ENV}
-  - echo $${LONG_ENVIRONMENT_VARIABLE_NAME}
   - pwd
   - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
