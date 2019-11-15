@@ -49,10 +49,7 @@ steps:
 #   - chmod 600 /drone/src/gcp/ansible_vault_password
 
 - name: Apply ansible playbook using Ansible plugin
-  image: plugins/ansible:2.0.0
-  secrets:
-    - gcp_ssh_key
-    - ans_vault
+  image: plugins/ansible:1
   environment:
     GCE_SSH_KEY:
       from_secret: gcp_ssh_key
