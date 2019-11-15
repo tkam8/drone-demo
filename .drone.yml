@@ -38,6 +38,9 @@ steps:
 
 - name: Apply Ansible playbook
   image: tkam8/tfansible:latest
+  environment:
+    BIGIP_PASS:
+      from_secret: bigip_pass  
   commands: 
   - printenv BIGIP_PASS
   - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
