@@ -8,7 +8,7 @@ steps:
   image: tkam8/tfansible:latest
   environment:
     ANSIBLE_VAULT_PASS:
-      from secret: ansible_vault_password
+      from secret: ansible_vault_pass
     GOOGLE_CREDENTIALS:
       from_secret: gcp_creds
     GCE_SSH_KEY:
