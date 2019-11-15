@@ -30,29 +30,21 @@ steps:
   - terraform apply -input=false -auto-approve
   #- terraform destroy -force
 
-# - name: SSH key preparation for Ansible Plugin
-#   image: tkam8/tfansible:latest
-#   environment:
-#     GCE_SSH_KEY:
-#       from_secret: gcp_ssh_key
-#     VAULT_PASS:
-#       from_secret: ans_vault
-#   commands: 
-#   # write the ssh key to disk
-#   - echo $${VAULT_PASS}
-#   - echo $${GCE_SSH_KEY}
-#   - mkdir /drone/src/gcp
-#   - echo -n $${GCE_SSH_KEY} > /drone/src/gcp/gcp_ssh_key
-#   - echo -n $${VAULT_PASS} > /drone/src/gcp/ansible_vault_password
-#   - cat /drone/src/gcp/ansible_vault_password
-#   - chmod 600 /drone/src/gcp/gcp_ssh_key 
-#   - chmod 600 /drone/src/gcp/ansible_vault_password
-
-- name: Apply ansible playbook using Ansible plugin
-  image: plugins/ansible:1
+- name: SSH key preparation for Ansible Plugin
+  image: tkam8/tfansible:latest
   environment:
     GCE_SSH_KEY:
       from_secret: gcp_ssh_key
+  commands: 
+  # write the ssh key to disk
+  - echo $${GCE_SSH_KEY}
+  - mkdir /drone/src/gcp
+  - echo -n $${GCE_SSH_KEY} > /drone/src/gcp/gcp_ssh_key
+  - cat /drone/src/gcp/ansible_vault_password
+  - chmod 600 /drone/src/gcp/gcp_ssh_key
+
+- name: Apply ansible playbook using Ansible plugin
+  image: plugins/ansible:1
   settings:
     playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
