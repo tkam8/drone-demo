@@ -17,6 +17,7 @@ steps:
   # Below pwd, ls commands are for debug purposes only
   - pwd
   - ls
+  - ls /home/tfansible/NGINX-F5-CDN/terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/group_vars/F5_systems/
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
   - terraform init -input=false
   - terraform apply -input=false -auto-approve
@@ -29,7 +30,6 @@ steps:
       from_secret: gcp_ssh_key
   commands: 
   # write the ssh key to disk
-  - printenv GCE_SSH_KEY
   - mkdir /drone/src/gcp
   - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
   - cat /drone/src/gcp/gcp_ssh_key
@@ -37,11 +37,12 @@ steps:
 
 - name: Apply ansible playbook using Ansible plugin
   image: plugins/ansible:1
+  environment:
+    BIGIP_PASS:
+      from_secret: bigip_pass
   settings:
     playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
-    vault_password:
-      from_secret: ans_vault
     verbose: 4
   debug: true
 
