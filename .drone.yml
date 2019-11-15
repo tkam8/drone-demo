@@ -31,7 +31,7 @@ steps:
   # write the ssh key to disk
   - echo $${GCE_SSH_KEY}
   - mkdir /drone/src/gcp
-  - echo -n $${GCE_SSH_KEY} > /drone/src/gcp/gcp_ssh_key
+  - echo $${GCE_SSH_KEY} > /drone/src/gcp/gcp_ssh_key
   - cat /drone/src/gcp/gcp_ssh_key
   - chmod 600 /drone/src/gcp/gcp_ssh_key
 
