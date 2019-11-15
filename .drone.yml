@@ -11,10 +11,11 @@ steps:
       from_secret: gcp_creds
     GCE_SSH_KEY:
       from_secret: gcp_ssh_key
-    VAULT_PASS:
-      from_secret: ans_vault
+    BIGIP_PASS:
+      from_secret: bigip_pass
   commands:
   # Below pwd, ls commands are for debug purposes only
+  - echo $${BIGIP_PASS}
   - pwd
   - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
@@ -36,9 +37,6 @@ steps:
 
 - name: Apply ansible playbook using Ansible plugin
   image: plugins/ansible:1
-  environment:
-    BIGIP_PASS:
-      from_secret: bigip_pass
   settings:
     playbook: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/site.yml
     inventory: terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
