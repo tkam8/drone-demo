@@ -43,6 +43,16 @@ variable "gke_instance_type" {
   type        = string
 }
 
+variable "gke_username" {
+  description = "The username for gke cluster basic auth."
+  type        = string
+}
+
+variable "gke_password" {
+  description = "The password for gke cluster basic auth."
+  type        = string
+}
+
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
 variable "DO_URL" {
   description = "The URL for downloading F5 Declarative Onboarding." 
