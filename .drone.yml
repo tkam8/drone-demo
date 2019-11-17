@@ -13,9 +13,9 @@ steps:
       from_secret: gcp_ssh_key
     BIGIP_PASS:
       from_secret: bigip_pass
-    TF_VAR_gke_username:
+    TF_VAR_GKE_USERNAME:
       from_secret: gke_username
-    TF_VAR_gke_password:
+    TF_VAR_GKE_PASSWORD:
       from_secret: gke_password
   commands:
   # Below pwd, ls commands are for debug purposes only
