@@ -16,6 +16,8 @@ steps:
   commands:
   # Below pwd, ls commands are for debug purposes only
   - echo $${BIGIP_PASS}
+  - echo $${TF_VARS_gke_username}
+  - echo $${TF_VARS_gke_password}
   - pwd
   - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
