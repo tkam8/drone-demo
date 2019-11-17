@@ -15,13 +15,13 @@ steps:
       from_secret: bigip_pass
     TF_VAR_gke_username:
       from_secret: gke_username
-    TF_VAR_GKE_PASSWORD:
+    TF_VAR_gke_password:
       from_secret: gke_password
   commands:
   # Below pwd, ls commands are for debug purposes only
   - echo $${BIGIP_PASS}
   - echo $${TF_VAR_gke_username}
-  - echo $${TF_VAR_GKE_PASSWORD}
+  - echo $${TF_VAR_gke_password}
   - pwd
   - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
