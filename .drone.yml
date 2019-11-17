@@ -14,9 +14,9 @@ steps:
     BIGIP_PASS:
       from_secret: bigip_pass
     TF_VAR_gke_username:
-      from_secret: TF_VAR_gke_username
+      from_secret: gke_username
     TF_VAR_gke_password:
-      from_secret: TF_VAR_gke_password
+      from_secret: gke_password
   commands:
   # Below pwd, ls commands are for debug purposes only
   - echo $${BIGIP_PASS}

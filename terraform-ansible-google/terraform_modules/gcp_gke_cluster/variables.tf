@@ -23,7 +23,7 @@ variable "zone" {
   type        = string
 }
 
-variable "gke_user" {
+variable "gke_username" {
   description = "The username for gke cluster basic auth."
   type        = string
 }
