@@ -34,8 +34,8 @@
     kubeconfig: "{{ kubeconfig }}"
   register: nginx_ep
 
-- name: debug 
-  debug: var=nginx_ep
+# - name: debug 
+#   debug: var=nginx_ep
 
 - name: Generate list of NGINX endpoints from the registered variable nginx_ep
   # Currently this assumes 1 IP address in the list 
