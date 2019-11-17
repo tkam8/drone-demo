@@ -13,14 +13,14 @@ steps:
       from_secret: gcp_ssh_key
     BIGIP_PASS:
       from_secret: bigip_pass
-    TF_VAR_GKE_USERNAME:
+    TF_VAR_gke_username:
       from_secret: gke_username
     TF_VAR_GKE_PASSWORD:
       from_secret: gke_password
   commands:
   # Below pwd, ls commands are for debug purposes only
   - echo $${BIGIP_PASS}
-  - echo $${TF_VAR_GKE_USERNAME}
+  - echo $${TF_VAR_gke_username}
   - echo $${TF_VAR_GKE_PASSWORD}
   - pwd
   - ls
