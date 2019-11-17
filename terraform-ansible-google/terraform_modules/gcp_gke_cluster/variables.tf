@@ -23,6 +23,16 @@ variable "zone" {
   type        = string
 }
 
+variable "gke_username" {
+  description = "The username for gke cluster basic auth."
+  type        = string
+}
+
+variable "gke_password" {
+  description = "The password for gke cluster basic auth."
+  type        = string
+}
+
 # -------------------------
 # OPTIONAL PARAMETERS
 # Generally, these values won't need to be changed.

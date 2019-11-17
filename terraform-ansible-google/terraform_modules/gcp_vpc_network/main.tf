@@ -51,7 +51,11 @@ resource "google_compute_subnetwork" "vpc_subnetwork_public" {
     )
   }
 
-  enable_flow_logs = var.enable_flow_logging
+  log_config {
+    aggregation_interval = "INTERVAL_10_MIN"
+    flow_sampling        = 0.5
+    metadata             = "INCLUDE_ALL_METADATA"
+  }
 }
 
 resource "google_compute_router_nat" "vpc_nat" {
@@ -98,7 +102,11 @@ resource "google_compute_subnetwork" "vpc_subnetwork_private" {
     )
   }
 
-  enable_flow_logs = var.enable_flow_logging
+  log_config {
+    aggregation_interval = "INTERVAL_10_MIN"
+    flow_sampling        = 0.5
+    metadata             = "INCLUDE_ALL_METADATA"
+  }
 }
 
 

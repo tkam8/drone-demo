@@ -12,8 +12,8 @@ resource "google_container_cluster" "primary" {
   subnetwork = var.subnetwork
 
   master_auth {
-    username = ""
-    password = ""
+    username = var.gke_username
+    password = var.gke_password
 
     client_certificate_config {
       issue_client_certificate = true
@@ -51,5 +51,5 @@ resource "local_file" "kubeconfig" {
     client_cert     = google_container_cluster.primary.master_auth[0].client_certificate
     client_cert_key = google_container_cluster.primary.master_auth[0].client_key
   })
-  filename = "/tmp/kubeconfig"
+  filename = "/drone/src/kubeconfig"
 }

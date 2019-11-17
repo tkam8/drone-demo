@@ -6,7 +6,7 @@
       ssh_keyfile: "{{ ansible_ssh_private_key_file }}"
       transport: cli
       user: admin
-    commands: modify auth user admin password {{ ADMIN_PASSWORD }}
+    commands: modify auth user admin password "{{ ADMIN_PASSWORD }}"
     validate_certs: no
   delegate_to: localhost
 

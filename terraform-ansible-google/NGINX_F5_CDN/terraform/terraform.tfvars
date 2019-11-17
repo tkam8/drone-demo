@@ -21,3 +21,9 @@ nginx_instance_type = "f1-micro"
 
 # The machine type of the gke cluster
 gke_instance_type = "n1-standard-1"
+
+# # The username for gke basic auth
+# gke_username = ${gke_user}
+
+# # The password for gke basic auth
+# gke_password = ${gke_pass}

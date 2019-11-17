@@ -14,7 +14,7 @@
   k8s:
     state: present
     kubeconfig: "{{ kubeconfig }}"
-    src: "/home/tfansible/NGINX-F5-CDN/terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/roles/app1_gke_onboarding/templates/pod_nginx.yml"
+    src: "roles/app1_gke_onboarding/templates/pod_nginx.yml"
 
 # - name: Get NGINX service
 #   k8s_facts:

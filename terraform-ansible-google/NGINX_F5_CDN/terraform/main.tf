@@ -60,6 +60,8 @@ module "gcp_gke_cluster1" {
   network          = module.cdn_network.network
   subnetwork       = module.cdn_network.public_subnetwork
   zone             = var.zone
+  gke_username     = var.gke_username
+  gke_password     = var.gke_password
 }
 
 module "gcp_gke_nodepool1" {

@@ -7,16 +7,21 @@ steps:
 - name: Pull tfansible container and Deploy Terraform
   image: tkam8/tfansible:latest
   environment:
-    ANSIBLE_VAULT_PASS:
-      from secret: ansible_vault_pass
     GOOGLE_CREDENTIALS:
       from_secret: gcp_creds
     GCE_SSH_KEY:
       from_secret: gcp_ssh_key
+    BIGIP_PASS:
+      from_secret: bigip_pass
+    TF_VAR_gke_username:
+      from_secret: gke_username
+    TF_VAR_gke_password:
+      from_secret: gke_password
   commands:
   # Below pwd, ls commands are for debug purposes only
-  - env
-  - echo $${ANSIBLE_VAULT_PASS}
+  - echo $${BIGIP_PASS}
+  - echo $${TF_VAR_gke_username}
+  - echo $${TF_VAR_gke_password}
   - pwd
   - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
@@ -26,23 +31,28 @@ steps:
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
+  environment:
+    GCE_SSH_KEY:
+      from_secret: gcp_ssh_key
   commands: 
   # write the ssh key to disk
-  - echo $${ANSIBLE_VAULT_PASS}
+  - ls /drone/src/
+  - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
+  - cat /drone/src/kubeconfig
+  - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/group_vars/F5_systems/vars
   - mkdir /drone/src/gcp
-  - echo -n "$GCE_SSH_KEY" > /drone/src/gcp/gcp_ssh_key
-  - echo -n "$ANSIBLE_VAULT_PASS" > /drone/src/gcp/ansible_vault_password
-  - cat /drone/src/gcp/ansible_vault_password
-  - chmod 600 /drone/src/gcp/gcp_ssh_key 
-  - chmod 600 /drone/src/gcp/ansible_vault_password
+  - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
+  - chmod 600 /drone/src/gcp/gcp_ssh_key
 
 - name: Apply Ansible playbook
   image: tkam8/tfansible:latest
+  environment:
+    BIGIP_PASS:
+      from_secret: bigip_pass  
   commands: 
-  - ls -lah /drone/src/gcp/
-  - echo $${ANSIBLE_VAULT_PASS}
+  - printenv BIGIP_PASS
   - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
-  - ansible-playbook --inventory inventory/hosts --vault-password-file /drone/src/gcp/ansible_vault_password -vvvv site.yml
+  - ansible-playbook --inventory inventory/hosts -vvvv site.yml
 
 trigger:
   branch:
