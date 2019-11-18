@@ -16,6 +16,12 @@
     kubeconfig: "{{ kubeconfig }}"
     src: "roles/app1_gke_onboarding/templates/pod_nginx.yml"
 
+- name: Wait for control-plane pods become ready
+  shell: "kubectl wait --namespace=upstream2 --for=condition=Ready pods --selector app=nginx-upstream2 --timeout=600s"
+  register: nginx_pods_ready
+
+- debug: var=nginx_pods_ready.stdout_lines
+
 # - name: Get NGINX service
 #   k8s_facts:
 #     api_version: v1
@@ -32,10 +38,6 @@
     name: nginx-upstream2
     namespace: upstream2
     kubeconfig: "{{ kubeconfig }}"
-  register: nginx_ep
-  until: "nginx_ep.resources[0].subsets[0].addresses[0].ip | list | count > 0"
-  delay: 5
-  retries: 10
 
 # - name: debug 
 #   debug: var=nginx_ep
