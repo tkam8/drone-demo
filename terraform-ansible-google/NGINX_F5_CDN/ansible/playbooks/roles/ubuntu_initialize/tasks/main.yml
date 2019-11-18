@@ -6,6 +6,15 @@
   fail: msg="These tasks should only be run on Debian/Ubuntu servers"
   when: ansible_os_family != "Debian"
 
+- name: Apt check
+  apt: 
+    name: rolldice
+    state: installed
+  register: apt_status
+  until: apt_status is success
+  delay: 3
+  retries: 10
+
 - name: update and upgrade packages via apt
   apt:
     upgrade=yes
