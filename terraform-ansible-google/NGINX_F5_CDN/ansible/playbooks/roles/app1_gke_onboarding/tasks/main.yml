@@ -43,6 +43,7 @@
     name: nginx-upstream2
     namespace: upstream2
     kubeconfig: "{{ kubeconfig }}"
+  register: nginx_ep
 
 # - name: debug 
 #   debug: var=nginx_ep
