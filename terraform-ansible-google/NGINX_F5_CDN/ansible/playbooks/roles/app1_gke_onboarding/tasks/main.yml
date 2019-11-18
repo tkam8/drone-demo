@@ -33,7 +33,7 @@
     namespace: upstream2
     kubeconfig: "{{ kubeconfig }}"
   register: nginx_ep
-  until: nginx_ep | selectattr(search_key,'equalto',subsets) | list | count > 0
+  until: "nginx_ep | selectattr(search_key,'equalto',subsets) | list | count > 0"
   delay: 5
   retries: 10
 
