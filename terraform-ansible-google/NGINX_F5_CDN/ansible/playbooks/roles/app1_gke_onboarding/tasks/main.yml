@@ -18,6 +18,7 @@
 
 - name: Wait for nginx pods become ready
   k8s:
+    kubeconfig: "{{ kubeconfig }}"
     wait: yes
     wait_condition: 
       type: Complete
