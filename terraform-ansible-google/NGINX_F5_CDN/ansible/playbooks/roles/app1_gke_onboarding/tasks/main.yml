@@ -26,13 +26,16 @@
 #   register: nginx_svc
 
 - name: Get NGINX endpoints for deployment created earlier
-  k8s_facts:
+  k8s_info:
     api_version: v1
     kind: Endpoints
     name: nginx-upstream2
     namespace: upstream2
     kubeconfig: "{{ kubeconfig }}"
   register: nginx_ep
+  until: nginx_ep is success
+  delay: 3
+  retries: 10
 
 # - name: debug 
 #   debug: var=nginx_ep
