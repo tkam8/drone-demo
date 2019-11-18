@@ -5,6 +5,7 @@
   hosts: gcp_nginx_systems
   become: yes
   become_method: sudo
+  become_user: root
   connection: ssh
   gather_facts: true
   roles: 
