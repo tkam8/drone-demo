@@ -10,24 +10,17 @@
     kind: Namespace
     state: present
 
-- name: Create a NGINX pod and expose by reading the definition from a local file
+- name: Create a NGINX pod and expose by reading the definition from a local file and wait to become ready
   k8s:
     state: present
     kubeconfig: "{{ kubeconfig }}"
     src: "roles/app1_gke_onboarding/templates/pod_nginx.yml"
-
-- name: Wait for nginx pods to become ready
-  k8s:
-    api_version: v1    
-    kind: Pod
-    name: nginx-upstream2
-    namespace: upstream2
-    kubeconfig: "{{ kubeconfig }}"
     wait: yes
     wait_condition: 
       type: Complete
       status: True
     wait_timeout: 600
+    
 
 # - name: Get NGINX service
 #   k8s_facts:
