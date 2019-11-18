@@ -26,7 +26,7 @@
 #   register: nginx_svc
 
 - name: Get NGINX endpoints for deployment created earlier
-  k8s_info:
+  k8s_facts:
     api_version: v1
     kind: Endpoints
     name: nginx-upstream2
