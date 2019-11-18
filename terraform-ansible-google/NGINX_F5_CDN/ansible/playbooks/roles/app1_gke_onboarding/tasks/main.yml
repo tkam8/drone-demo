@@ -17,7 +17,7 @@
     src: "roles/app1_gke_onboarding/templates/pod_nginx.yml"
     wait: yes
     wait_condition: 
-      type: Progressing
+      type: Available
       status: True
     wait_timeout: 180
     
