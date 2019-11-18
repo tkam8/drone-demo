@@ -18,12 +18,12 @@ steps:
     TF_VAR_gke_password:
       from_secret: gke_password
   commands:
-  # Below pwd, ls commands are for debug purposes only
-  - echo $${BIGIP_PASS}
-  - echo $${TF_VAR_gke_username}
-  - echo $${TF_VAR_gke_password}
-  - pwd
-  - ls
+  # Below commands are for debug purposes only
+  # - echo $${BIGIP_PASS}
+  # - echo $${TF_VAR_gke_username}
+  # - echo $${TF_VAR_gke_password}
+  # - pwd
+  # - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
   - terraform init -input=false
   - terraform apply -input=false -auto-approve
@@ -35,11 +35,12 @@ steps:
     GCE_SSH_KEY:
       from_secret: gcp_ssh_key
   commands: 
-  # write the ssh key to disk
-  - ls /drone/src/
-  - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
-  - cat /drone/src/kubeconfig
-  - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/group_vars/F5_systems/vars
+  # Below commands are for debug purposes only
+  # - ls /drone/src/
+  # - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
+  # - cat /drone/src/kubeconfig
+  # - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/group_vars/F5_systems/vars
+  # Write the ssh key to disk
   - mkdir /drone/src/gcp
   - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
   - chmod 600 /drone/src/gcp/gcp_ssh_key
@@ -50,7 +51,6 @@ steps:
     BIGIP_PASS:
       from_secret: bigip_pass  
   commands: 
-  - printenv BIGIP_PASS
   - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
   - ansible-playbook --inventory inventory/hosts -vvvv site.yml
 
