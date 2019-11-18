@@ -16,8 +16,11 @@
     kubeconfig: "{{ kubeconfig }}"
     src: "roles/app1_gke_onboarding/templates/pod_nginx.yml"
 
-- name: Wait for nginx pods become ready
+- name: Wait for nginx pods to become ready
   k8s:
+    kind: Pod
+    name: nginx-upstream2
+    api_version: v1
     kubeconfig: "{{ kubeconfig }}"
     wait: yes
     wait_condition: 
