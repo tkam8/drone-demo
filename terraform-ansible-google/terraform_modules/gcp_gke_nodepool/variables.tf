@@ -12,7 +12,7 @@ variable "name_prefix" {
 variable "primary_node_count" {
   description = "The number of nodes per instance group."
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "gke_instance_type" {
