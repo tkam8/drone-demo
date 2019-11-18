@@ -33,12 +33,12 @@
     namespace: upstream2
     kubeconfig: "{{ kubeconfig }}"
   register: nginx_ep
-  until: "nginx_ep | selectattr(search_key,'equalto',subsets) | list | count > 0"
-  delay: 5
-  retries: 10
+  # until: "nginx_ep.resources[0].subsets[0].addresses[0].ip | list | count > 0"
+  # delay: 5
+  # retries: 10
 
-# - name: debug 
-#   debug: var=nginx_ep
+- name: debug 
+  debug: var=nginx_ep
 
 - name: Generate list of NGINX endpoints from the registered variable nginx_ep
   # Currently this assumes 1 IP address in the list 
