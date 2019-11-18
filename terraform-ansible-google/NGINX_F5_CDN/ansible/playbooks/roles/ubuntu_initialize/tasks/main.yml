@@ -8,8 +8,8 @@
 
 - name: update and upgrade packages via apt
   apt:
-    upgrade=yes
-    update_cache=yes
+    upgrade: yes
+    update_cache: yes
   register: apt_status
   until: apt_status is success
   delay: 3
