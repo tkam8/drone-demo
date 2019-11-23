@@ -1,5 +1,5 @@
 # A name prefix used in resource names to ensure uniqueness across a project
-name_prefix = "terrytest1"
+name_prefix = "demo1"
 
 # The name of the GCP Project where all resources will be launched
 project = "f5-gcs-4261-sales-apcj-japan"

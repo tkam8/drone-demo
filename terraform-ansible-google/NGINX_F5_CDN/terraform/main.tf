@@ -13,7 +13,7 @@ provider "google" {
 # Configure the cloud storage for storing the state file
 terraform {
   backend "gcs" {
-    bucket  = "byocdn-terraform-bucket"
+    bucket  = "tky-drone-demo"
     prefix  = "terraform/state"
   }
 }

@@ -54,6 +54,18 @@ steps:
   - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
   - ansible-playbook --inventory inventory/hosts -vvvv site.yml
 
+- name: Slack notification
+  image: plugins/slack
+  settings:
+    webhook: https://hooks.slack.com/services/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
+    channel: sandbox
+    template: >
+      {{#success build.status}}
+        build {{build.number}} succeeded. Here's a tequila.
+      {{else}}
+        build {{build.number}} failed. Fix me please.
+      {{/success}}
+
 trigger:
   branch:
   - master
