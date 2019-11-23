@@ -61,7 +61,7 @@ steps:
     channel: sandbox
     template: >
       {{#success build.status}}
-        build {{build.number}} succeeded. Here's a tequila.
+        build {{build.number}} succeeded. Here's a tequila~.
       {{else}}
         build {{build.number}} failed. Fix me please.
       {{/success}}
