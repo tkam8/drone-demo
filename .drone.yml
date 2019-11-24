@@ -59,12 +59,12 @@ steps:
     webhook:
       from_secret: slack_webhook
     channel: sandbox
-    image_url: https://github.com/drone/brand/blob/master/logos/png/dark/drone-logo-png-dark-64.png
+    image_url: https://unsplash.it/256/256/?random
     template: >
       {{#success build.status}}
-        Plan & Syntax Check for {{build.number}} succeeded. Maika'i.
+        Plan & Syntax Check for build {{build.number}} succeeded. OK to merge.
       {{else}}
-        Plan & Syntax Check for {{build.number}} failed. Auwe.
+        Plan & Syntax Check for build {{build.number}} failed. Auwe.
       {{/success}}
 
 trigger:
@@ -94,6 +94,7 @@ steps:
       from_secret: gke_password
   commands:
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
+  - terraform init -input=false
   - terraform apply -input=false -auto-approve
   #- terraform destroy -force
 
@@ -123,7 +124,7 @@ steps:
     webhook:
       from_secret: slack_webhook
     channel: sandbox
-    image_url: https://github.com/drone/brand/blob/master/logos/png/dark/drone-logo-png-dark-64.png
+    image_url: https://unsplash.it/256/256/?random
     template: >
       {{#success build.status}}
         Build {{build.number}} succeeded. Here's a tequila~.
