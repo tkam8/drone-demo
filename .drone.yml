@@ -57,7 +57,8 @@ steps:
 - name: Slack notification
   image: plugins/slack
   settings:
-    webhook: https://hooks.slack.com/services/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
+    webhook:
+      from_secret: slack_webhook
     channel: sandbox
     template: >
       {{#success build.status}}
