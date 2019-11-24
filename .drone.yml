@@ -1,10 +1,10 @@
 ---
 kind: pipeline
-name: default
+name: Plan & Check
 
 steps:
 
-- name: Pull tfansible container and Deploy Terraform
+- name: Terraform init and plan
   image: tkam8/tfansible:latest
   environment:
     GOOGLE_CREDENTIALS:
@@ -26,8 +26,7 @@ steps:
   # - ls
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
   - terraform init -input=false
-  - terraform apply -input=false -auto-approve
-  #- terraform destroy -force
+  - terraform plan -input=false
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
@@ -45,6 +44,70 @@ steps:
   - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
   - chmod 600 /drone/src/gcp/gcp_ssh_key
 
+- name: Check Ansible playbook Syntax
+  image: tkam8/tfansible:latest
+  environment:
+    BIGIP_PASS:
+      from_secret: bigip_pass  
+  commands: 
+  - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
+  - ansible-playbook --inventory inventory/hosts --syntax-check -vv site.yml
+
+- name: Slack notification
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: slack_webhook
+    channel: sandbox
+    image_url: https://github.com/drone/brand/blob/master/logos/png/dark/drone-logo-png-dark-64.png
+    template: >
+      {{#success build.status}}
+        Plan & Syntax Check for {{build.number}} succeeded. Maika'i.
+      {{else}}
+        Plan & Syntax Check for {{build.number}} failed. Auwe.
+      {{/success}}
+
+trigger:
+  branch:
+  - master
+  event:
+  - pull_request
+
+---
+kind: pipeline
+name: Apply templates
+
+steps:
+
+- name: Terraform apply
+  image: tkam8/tfansible:latest
+  environment:
+    GOOGLE_CREDENTIALS:
+      from_secret: gcp_creds
+    GCE_SSH_KEY:
+      from_secret: gcp_ssh_key
+    BIGIP_PASS:
+      from_secret: bigip_pass
+    TF_VAR_gke_username:
+      from_secret: gke_username
+    TF_VAR_gke_password:
+      from_secret: gke_password
+  commands:
+  - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
+  - terraform apply -input=false -auto-approve
+  #- terraform destroy -force
+
+- name: SSH key preparation for Ansible Plugin
+  image: tkam8/tfansible:latest
+  environment:
+    GCE_SSH_KEY:
+      from_secret: gcp_ssh_key
+  commands: 
+  # Write the ssh key to disk
+  - mkdir /drone/src/gcp
+  - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
+  - chmod 600 /drone/src/gcp/gcp_ssh_key
+
 - name: Apply Ansible playbook
   image: tkam8/tfansible:latest
   environment:
@@ -57,13 +120,15 @@ steps:
 - name: Slack notification
   image: plugins/slack
   settings:
-    webhook: https://hooks.slack.com/services/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
+    webhook:
+      from_secret: slack_webhook
     channel: sandbox
+    image_url: https://github.com/drone/brand/blob/master/logos/png/dark/drone-logo-png-dark-64.png
     template: >
       {{#success build.status}}
-        build {{build.number}} succeeded. Here's a tequila.
+        Build {{build.number}} succeeded. Here's a tequila~.
       {{else}}
-        build {{build.number}} failed. Fix me please.
+        Build {{build.number}} failed. Fix me please.
       {{/success}}
 
 trigger:
@@ -71,4 +136,3 @@ trigger:
   - master
   event:
   - push
-  - pull_request
