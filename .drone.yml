@@ -59,7 +59,7 @@ steps:
     webhook:
       from_secret: slack_webhook
     channel: sandbox
-    image_url: https://unsplash.it/256/256/?random
+    image_url: https://picsum.photos/64
     template: >
       {{#success build.status}}
         Plan & Syntax Check for build {{build.number}} succeeded. OK to merge.
@@ -95,8 +95,8 @@ steps:
   commands:
   - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
   - terraform init -input=false
-  - terraform apply -input=false -auto-approve
-  #- terraform destroy -force
+  #- terraform apply -input=false -auto-approve
+  - terraform destroy -force
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
@@ -124,7 +124,7 @@ steps:
     webhook:
       from_secret: slack_webhook
     channel: sandbox
-    image_url: https://unsplash.it/256/256/?random
+    image_url: https://picsum.photos/64
     template: >
       {{#success build.status}}
         Build {{build.number}} succeeded. Here's a tequila~.
