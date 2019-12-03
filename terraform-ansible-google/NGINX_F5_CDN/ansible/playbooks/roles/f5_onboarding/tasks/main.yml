@@ -9,6 +9,10 @@
     commands: modify auth user admin password "{{ ADMIN_PASSWORD }}"
     validate_certs: no
   delegate_to: localhost
+  register: setpasswd_status
+  until: setpasswd_status is success
+  delay: 5
+  retries: 10
 
 - name: enable iApps LX Package management in UI
   bigip_command:
