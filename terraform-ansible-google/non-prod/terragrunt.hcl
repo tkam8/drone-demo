@@ -10,7 +10,6 @@ remote_state {
   config = {
     encrypt        = true
     bucket         = "tky-drone-demo-stage"
-    prefix         = "terraform/state"
     region         = "asia-northeast1"
   }
 }
