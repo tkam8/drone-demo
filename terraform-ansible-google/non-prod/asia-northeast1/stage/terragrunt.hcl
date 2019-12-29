@@ -21,8 +21,8 @@ dependency "f5" {
   config_path = "./terraform/functions/f5"
 
   mock_outputs = {
-    gcp_F5_public_ip    = 1.1.1.1
-    gcp_F5_private_ip   = 2.2.2.2
+    gcp_F5_public_ip    = "1.1.1.1"
+    gcp_F5_private_ip   = "2.2.2.2"
   }
 }
 
@@ -39,7 +39,7 @@ dependency "gke" {
 
   mock_outputs = {
     gcp_gke_cluster_name    = "clusterName"
-    gcp_gke_endpoint        = 3.3.3.3
+    gcp_gke_endpoint        = "3.3.3.3"
   }
 }
 
