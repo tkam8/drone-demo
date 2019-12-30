@@ -9,7 +9,6 @@ remote_state {
   backend = "gcs"
   config = {
     bucket         = "tky-drone-demo-stage"
-    region         = "asia-northeast1"
     prefix         = "terraform/state"
   }
 }
