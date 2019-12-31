@@ -19,8 +19,8 @@ dependency "vpc" {
 
   mock_outputs = {
     network             = "networkName"
-    public_subnetwork   = "https://www.googleapis.com/compute/v1/networkSelflink"
-    private_subnetwork  = "https://www.googleapis.com/compute/v1/networkSelflink"
+    public_subnetwork   = "projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
+    private_subnetwork  = "projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet2"
   }
   skip_outputs = true
 }
