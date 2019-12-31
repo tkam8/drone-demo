@@ -15,7 +15,7 @@ include {
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
-  name_prefix        = "demo_stage"
+  name_prefix        = "demo-stage"
   project            = "f5-gcs-4261-sales-apcj-japan"
   region             = "asia-northeast1"
 }
