@@ -22,6 +22,7 @@ dependency "vpc" {
     public_subnetwork   = "https://www.googleapis.com/compute/v1/networkSelflink"
     private_subnetwork  = "https://www.googleapis.com/compute/v1/networkSelflink"
   }
+  skip_outputs = true
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
