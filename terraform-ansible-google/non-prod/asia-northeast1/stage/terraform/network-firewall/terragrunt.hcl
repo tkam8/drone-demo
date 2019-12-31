@@ -19,8 +19,8 @@ dependency "vpc" {
 
   mock_outputs = {
     network             = "networkName"
-    public_subnetwork   = "networkSelflink"
-    private_subnetwork  = "networkSelflink"
+    public_subnetwork   = "https://www.googleapis.com/compute/v1/networkSelflink"
+    private_subnetwork  = "https://www.googleapis.com/compute/v1/networkSelflink"
   }
 }
 
