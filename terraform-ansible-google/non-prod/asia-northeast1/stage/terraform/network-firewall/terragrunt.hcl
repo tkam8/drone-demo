@@ -11,7 +11,7 @@ terraform {
 
 # Include all settings from the root terragrunt.hcl file
 include {
-  path = find_in_parent_folders()
+  path = "../../../../terragrunt.hcl"
 }
 
 dependency "vpc" {
@@ -26,10 +26,10 @@ dependency "vpc" {
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
-  name_prefix        = var.name_prefix
-  project            = var.project
+  name_prefix        = "demo-stage"
+  project            = "f5-gcs-4261-sales-apcj-japan"
   network            = dependency.vpc.outputs.network
-  allowed_networks   = var.allowed_networks
+  allowed_networks   = ["210.226.41.0/24"]
 
   public_subnetwork  = dependency.vpc.outputs.public_subnetwork
   private_subnetwork = dependency.vpc.outputs.private_subnetwork
