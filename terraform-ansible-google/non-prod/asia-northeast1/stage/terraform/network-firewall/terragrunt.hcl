@@ -28,6 +28,7 @@ dependency "vpc" {
 inputs = {
   name_prefix        = "demo-stage"
   project            = "f5-gcs-4261-sales-apcj-japan"
+  region             = "asia-northeast1"
   network            = dependency.vpc.outputs.network
   allowed_networks   = ["210.226.41.0/24"]
 
