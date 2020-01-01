@@ -18,9 +18,13 @@ dependency "vpc" {
   config_path = "../vpc"
 
   mock_outputs = {
-    network             = "networkName"
-    public_subnetwork   = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
-    private_subnetwork  = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet2"
+    network                 = "networkName"
+    public_subnetwork       = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
+    private_subnetwork      = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet2"
+    pub_subnw_range         = "10.1.10.0/24"
+    pub_subnw_range_scndry  = "10.1.11.0/24"
+    priv_subnw_range        = "192.168.10.0/24"
+    priv_subnw_range_scndry = "192.168.11.0/24"
   }
   mock_outputs_allowed_terraform_commands = ["validate", "plan"]
   skip_outputs = true
@@ -28,13 +32,18 @@ dependency "vpc" {
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
-  name_prefix        = "demo-stage"
-  project            = "f5-gcs-4261-sales-apcj-japan"
-  region             = "asia-northeast1"
-  network            = dependency.vpc.outputs.network
-  allowed_networks   = ["210.226.41.0/24"]
+  name_prefix             = "demo-stage"
+  project                 = "f5-gcs-4261-sales-apcj-japan"
+  region                  = "asia-northeast1"
+  network                 = dependency.vpc.outputs.network
+  allowed_networks        = ["210.226.41.0/24"]
 
-  public_subnetwork  = dependency.vpc.outputs.public_subnetwork
-  private_subnetwork = dependency.vpc.outputs.private_subnetwork
+  public_subnetwork       = dependency.vpc.outputs.public_subnetwork
+  private_subnetwork      = dependency.vpc.outputs.private_subnetwork
+
+  pub_subnw_range         = dependency.vpc.outputs.public_subnetwork.ip_cidr_range
+  pub_subnw_range_scndry  = dependency.vpc.outputs.public_subnetwork.secondary_ip_range[0].ip_cidr_range
+  priv_subnw_range        = dependency.vpc.outputs.private_subnetwork.ip_cidr_range
+  priv_subnw_range_scndry = dependency.vpc.outputs.private_subnetwork.secondary_ip_range[0].ip_cidr_range
+
 }
-
