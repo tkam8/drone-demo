@@ -21,10 +21,10 @@ dependency "vpc" {
     network                 = "networkName"
     public_subnetwork       = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
     private_subnetwork      = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet2"
-    "${public_subnetwork.ip_cidr_range}                        = "10.1.10.0/24"
-    "${public_subnetwork.secondary_ip_range[0].ip_cidr_range}  = "10.1.11.0/24"
-    "${private_subnetwork.ip_cidr_range}                       = "192.168.10.0/24"
-    "${private_subnetwork.secondary_ip_range[0].ip_cidr_range} = "192.168.11.0/24"
+    ${public_subnetwork.ip_cidr_range}                        = "10.1.10.0/24"
+    ${public_subnetwork.secondary_ip_range[0].ip_cidr_range}  = "10.1.11.0/24"
+    ${private_subnetwork.ip_cidr_range}                       = "192.168.10.0/24"
+    ${private_subnetwork.secondary_ip_range[0].ip_cidr_range} = "192.168.11.0/24"
   }
   mock_outputs_allowed_terraform_commands = ["validate", "plan"]
   skip_outputs = true
