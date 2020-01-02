@@ -12,7 +12,7 @@ include {
 }
 
 dependency "network-firewall" {
-  config_path = "../network-firewall"
+  config_path = "../../network-firewall"
 
   mock_outputs = {
     network      = "networkName"
