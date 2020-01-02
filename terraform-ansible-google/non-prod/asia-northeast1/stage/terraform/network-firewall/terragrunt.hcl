@@ -21,14 +21,16 @@ dependency "vpc" {
     network                 = "networkName"
     public_subnetwork       = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
     private_subnetwork      = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet2"
-    ${public_subnetwork.ip_cidr_range}                        = "10.1.10.0/24"
-    ${public_subnetwork.secondary_ip_range[0].ip_cidr_range}  = "10.1.11.0/24"
-    ${private_subnetwork.ip_cidr_range}                       = "192.168.10.0/24"
-    ${private_subnetwork.secondary_ip_range[0].ip_cidr_range} = "192.168.11.0/24"
+    public_subnetwork_cidr_block             = "10.1.10.0/24"
+    public_subnetwork_secondary_cidr_block   = "10.1.11.0/24"
+    private_subnetwork_cidr_block            = "192.168.10.0/24"
+    private_subnetwork_secondary_cidr_block  = "192.168.11.0/24"
   }
   mock_outputs_allowed_terraform_commands = ["validate", "plan"]
   skip_outputs = true
 }
+
+
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
@@ -41,9 +43,9 @@ inputs = {
   public_subnetwork       = dependency.vpc.outputs.public_subnetwork
   private_subnetwork      = dependency.vpc.outputs.private_subnetwork
 
-  pub_subnw_range         = dependency.vpc.outputs.public_subnetwork.ip_cidr_range
-  pub_subnw_range_scndry  = dependency.vpc.outputs.public_subnetwork.secondary_ip_range[0].ip_cidr_range
-  priv_subnw_range        = dependency.vpc.outputs.private_subnetwork.ip_cidr_range
-  priv_subnw_range_scndry = dependency.vpc.outputs.private_subnetwork.secondary_ip_range[0].ip_cidr_range
+  pub_subnw_range         = dependency.vpc.outputs.public_subnetwork_cidr_block
+  pub_subnw_range_scndry  = dependency.vpc.outputs.public_subnetwork_secondary_cidr_block
+  priv_subnw_range        = dependency.vpc.outputs.private_subnetwork_cidr_block
+  priv_subnw_range_scndry = dependency.vpc.outputs.private_subnetwork_secondary_cidr_block
 
 }
