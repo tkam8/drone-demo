@@ -15,6 +15,7 @@
 //   }
 // }
 
+terraform {}
 
 # New Terragrunt feature in v.019, alternative to terraform_remote_state. Provide mock outputs to use when a module hasn’t been applied yet.
 dependency "f5" {
