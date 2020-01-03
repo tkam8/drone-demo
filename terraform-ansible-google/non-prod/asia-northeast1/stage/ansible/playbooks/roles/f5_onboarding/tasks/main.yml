@@ -7,7 +7,7 @@
     timeout: 10
   delegate_to: localhost
 
-  - name: Set BIG-IP admin password
+- name: Set BIG-IP admin password
   bigip_command:
     provider:
       server: "{{ inventory_hostname }}"
