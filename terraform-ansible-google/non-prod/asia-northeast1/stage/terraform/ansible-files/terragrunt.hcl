@@ -29,8 +29,8 @@ dependency "f5" {
   config_path = "../functions/f5"
 
   mock_outputs = {
-    gcp_F5_public_ip    = "1.1.1.1"
-    gcp_F5_private_ip   = "2.2.2.2"
+    f5_public_ip    = "1.1.1.1"
+    f5_private_ip   = "2.2.2.2"
   }
 }
 
@@ -38,7 +38,7 @@ dependency "nginx" {
   config_path = "../functions/nginx"
 
   mock_outputs = {
-    gcp_nginx_data    = "networkName"
+    nginx_public_ip   = "networkName"
     app_tag_value     = "testing"
     nginx_public_ip   = "4.4.4.4"
     nginx_private_ip  = "5.5.5.5"
@@ -49,26 +49,26 @@ dependency "gke" {
   config_path = "../functions/gke_cluster"
 
   mock_outputs = {
-    gcp_gke_cluster_name    = "clusterName"
-    gcp_gke_endpoint        = "3.3.3.3"
-    gcp_gke_username        = "admin"
-    gcp_gke_password        = "default"
+    gke_cluster_name    = "clusterName"
+    gke_endpoint        = "3.3.3.3"
+    gke_username        = "admin"
+    gke_password        = "default"
   }
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
-  terragrunt_path       = "${get_terragrunt_dir()}"
-  gcp_F5_public_ip      = dependency.f5.outputs.f5_public_ip
-  gcp_F5_private_ip     = dependency.f5.outputs.f5_private_ip
-  gcp_nginx_data        = dependency.nginx.outputs.nginx_public_ip
-  gcp_gke_cluster_name  = dependency.gke.outputs.gke_cluster_name
-  gcp_gke_endpoint      = dependency.gke.outputs.gke_endpoint
+  terragrunt_path   = "${get_terragrunt_dir()}"
+  f5_public_ip      = dependency.f5.outputs.f5_public_ip
+  f5_private_ip     = dependency.f5.outputs.f5_private_ip
+  nginx_public_ip   = dependency.nginx.outputs.nginx_public_ip
+  gke_cluster_name  = dependency.gke.outputs.gke_cluster_name
+  gke_endpoint      = dependency.gke.outputs.gke_endpoint
 
-  gcp_tag_value         = dependency.nginx.outputs.app_tag_value
+  app_tag_value         = dependency.nginx.outputs.app_tag_value
   #use below var for multiple nginx deployements
   #gcp_f5_pool_members  = join("','", dependency.nginx.outputs.nginx_private_ip)
-  gcp_f5_pool_members   = dependency.nginx.outputs.nginx_private_ip
-  gcp_gke_username      = dependency.gke.outputs.cluster_username
-  gcp_gke_password      = dependency.gke.outputs.cluster_password
+  nginx_private_ip      = dependency.nginx.outputs.nginx_private_ip
+  cluster_username      = dependency.gke.outputs.cluster_username
+  cluster_password      = dependency.gke.outputs.cluster_password
 }
