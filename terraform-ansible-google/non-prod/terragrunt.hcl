@@ -8,10 +8,8 @@
 remote_state {
   backend = "gcs"
   config = {
-    encrypt        = true
     bucket         = "tky-drone-demo-stage"
-    prefix         = "terraform/state"
-    region         = "asia-northeast1"
+    prefix         = "${path_relative_to_include()}/terraform.tfstate"
   }
 }
 

@@ -5,14 +5,17 @@
 # Terragrunt will copy the Terraform configurations specified by the source parameter, along with any files in the
 # working directory, into a temporary folder, and execute your Terraform commands in that folder.
 terraform {
-  source = "git::git@github.com:tkam8/drone-demo-module.git//gcp_vpc_network?ref=v0.1"
+  source = "github.com/tkam8/drone-demo-module//gcp_vpc_network?ref=v0.1"
 }
 
 # Include all settings from the root terragrunt.hcl file
 include {
-  path = find_in_parent_folders()
+  path = "../../../../terragrunt.hcl"
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
-inputs = {}
-
+inputs = {
+  name_prefix        = "demo-stage"
+  project            = "f5-gcs-4261-sales-apcj-japan"
+  region             = "asia-northeast1"
+}
