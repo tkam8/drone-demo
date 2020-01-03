@@ -16,7 +16,7 @@ dependency "network-firewall" {
 
   mock_outputs = {
     network      = "networkName"
-    subnetwork   = "networkSelflink"
+    subnetwork   = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
   }
 }
 
@@ -27,7 +27,7 @@ inputs = {
   region               = "asia-northeast1"
   zone                 = "asia-northeast1-b"
   network              = dependency.network-firewall.outputs.network
-  subnetwork           = dependency.network-firewall.outputs.public_subnetwork
+  subnetwork           = dependency.network-firewall.outputs.subnetwork
   nginx_instance_type  = "f1-micro"
   app_tag_value        = "terrydemo"
 }

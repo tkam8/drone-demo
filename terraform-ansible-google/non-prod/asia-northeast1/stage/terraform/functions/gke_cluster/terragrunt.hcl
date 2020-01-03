@@ -28,7 +28,7 @@ inputs = {
   region           = "asia-northeast1"
   zone             = "asia-northeast1-b"
   network          = dependency.network-firewall.outputs.network
-  subnetwork       = dependency.network-firewall.outputs.public_subnetwork
+  subnetwork       = dependency.network-firewall.outputs.subnetwork
   gke_username     = get_env("TF_VAR_gke_password", "default")
   gke_password     = get_env("TF_VAR_gke_password", "default")
 }
