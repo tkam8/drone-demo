@@ -19,6 +19,11 @@ terraform {
   source = "github.com/tkam8/drone-demo-module//ansible_files?ref=v0.1"
 }
 
+# Include all settings from the root terragrunt.hcl file
+include {
+  path = "../../../../terragrunt.hcl"
+}
+
 # New Terragrunt feature in v.019, alternative to terraform_remote_state. Provide mock outputs to use when a module hasn’t been applied yet.
 dependency "f5" {
   config_path = "../functions/f5"
