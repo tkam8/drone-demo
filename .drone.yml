@@ -24,9 +24,8 @@ steps:
   # - echo $${TF_VAR_gke_password}
   # - pwd
   # - ls
-  - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
-  - terraform init -input=false
-  - terraform plan -input=false
+  - cd terraform-ansible-google/non-prod/
+  - terragrunt plan -input=false
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
@@ -50,7 +49,7 @@ steps:
     BIGIP_PASS:
       from_secret: bigip_pass  
   commands: 
-  - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
+  - cd terraform-ansible-google/non-prod/asia-northeast1/stage/ansible/playbooks/
   - ansible-playbook --inventory inventory/hosts --syntax-check -vv site.yml
 
 - name: Slack notification
@@ -94,10 +93,9 @@ steps:
     TF_VAR_gke_password:
       from_secret: gke_password
   commands:
-  - cd terraform-ansible-google/NGINX_F5_CDN/terraform/
-  - terraform init -input=false
-  - terraform apply -input=false -auto-approve
-  #- terraform destroy -force
+  - cd terraform-ansible-google/non-prod/
+  - terragrunt apply-all -input=false -auto-approve
+  #- terraform destroy-all -force
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
@@ -116,7 +114,7 @@ steps:
     BIGIP_PASS:
       from_secret: bigip_pass  
   commands: 
-  - cd terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/
+  - cd erraform-ansible-google/non-prod/asia-northeast1/stage/ansible/playbooks/
   - ansible-playbook --inventory inventory/hosts -vvvv site.yml
 
 - name: Slack notification
