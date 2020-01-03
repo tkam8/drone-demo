@@ -51,8 +51,8 @@ dependency "gke" {
   mock_outputs = {
     gke_cluster_name    = "clusterName"
     gke_endpoint        = "3.3.3.3"
-    gke_username        = "admin"
-    gke_password        = "default"
+    cluster_username    = "admin"
+    cluster_password    = "default"
   }
 }
 
