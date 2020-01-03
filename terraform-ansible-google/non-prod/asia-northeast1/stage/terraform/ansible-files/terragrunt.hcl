@@ -39,7 +39,6 @@ dependency "nginx" {
 
   mock_outputs = {
     nginx_public_ip   = "networkName"
-    app_tag_value     = "testing"
     nginx_public_ip   = "4.4.4.4"
     nginx_private_ip  = "5.5.5.5"
   }
