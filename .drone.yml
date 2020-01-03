@@ -95,8 +95,8 @@ steps:
       from_secret: gke_password
   commands:
   - cd terraform-ansible-google/non-prod/
-  - terragrunt apply-all -input=false -auto-approve
-  #- terraform destroy-all -force
+  - terragrunt apply-all -auto-approve
+  #- terragrunt destroy-all -force
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
