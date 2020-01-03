@@ -24,8 +24,9 @@ steps:
   # - echo $${TF_VAR_gke_password}
   - pwd
   - ls
+  - ls terraform-ansible-google/non-prod/
   - cd terraform-ansible-google/non-prod/
-  - terragrunt plan -input=false
+  - terragrunt plan-all -input=false
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
