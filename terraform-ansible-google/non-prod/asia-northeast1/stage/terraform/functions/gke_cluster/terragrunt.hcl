@@ -15,20 +15,11 @@ dependency "vpc" {
   config_path = "../../vpc"
 
   mock_outputs = {
-    network                 = "networkName"
+    network             = "networkName"
+    public_subnetwork   = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
   }
   mock_outputs_allowed_terraform_commands = ["validate", "plan"]
   #skip_outputs = true
-}
-
-dependency "network-firewall" {
-  config_path = "../../network-firewall"
-
-  mock_outputs = {
-    network      = "networkName"
-    subnetwork   = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
-  }
-  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
@@ -38,7 +29,7 @@ inputs = {
   region           = "asia-northeast1"
   zone             = "asia-northeast1-b"
   network          = dependency.vpc.outputs.network
-  subnetwork       = dependency.network-firewall.outputs.subnetwork
+  subnetwork       = dependency.vpc.outputs.public_subnetwork
   gke_username     = get_env("TF_VAR_gke_password", "default")
   gke_password     = get_env("TF_VAR_gke_password", "default")
 }
