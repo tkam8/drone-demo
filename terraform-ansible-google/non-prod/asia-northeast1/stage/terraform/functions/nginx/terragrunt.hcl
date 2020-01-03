@@ -11,6 +11,16 @@ include {
   path = "../../../../../terragrunt.hcl"
 }
 
+dependency "vpc" {
+  config_path = "../../vpc"
+
+  mock_outputs = {
+    network                 = "networkName"
+  }
+  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
+  #skip_outputs = true
+}
+
 dependency "network-firewall" {
   config_path = "../../network-firewall"
 
@@ -18,6 +28,7 @@ dependency "network-firewall" {
     network      = "networkName"
     subnetwork   = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
   }
+  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
@@ -26,7 +37,7 @@ inputs = {
   project              = "f5-gcs-4261-sales-apcj-japan"
   region               = "asia-northeast1"
   zone                 = "asia-northeast1-b"
-  network              = dependency.network-firewall.outputs.network
+  network              = dependency.vpc.outputs.network
   subnetwork           = dependency.network-firewall.outputs.subnetwork
   nginx_instance_type  = "f1-micro"
   app_tag_value        = "terrydemo"

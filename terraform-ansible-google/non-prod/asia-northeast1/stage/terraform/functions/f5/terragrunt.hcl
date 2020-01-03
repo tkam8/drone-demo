@@ -11,6 +11,16 @@ include {
   path = "../../../../../terragrunt.hcl"
 }
 
+dependency "vpc" {
+  config_path = "../../vpc"
+
+  mock_outputs = {
+    network                 = "networkName"
+  }
+  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
+  #skip_outputs = true
+}
+
 dependency "network-firewall" {
   config_path = "../../network-firewall"
 
@@ -27,7 +37,7 @@ inputs = {
   project           = "f5-gcs-4261-sales-apcj-japan"
   region            = "asia-northeast1"
   zone              = "asia-northeast1-b"
-  network           = dependency.network-firewall.outputs.network
+  network           = dependency.vpc.outputs.network
   subnetwork        = dependency.network-firewall.outputs.subnetwork
   f5_instance_type  = "n1-standard-4"
   TS_URL            = "https://github.com/F5Networks/f5-telemetry-streaming/releases/download/v1.8.0/f5-telemetry-1.8.0-1.noarch.rpm"

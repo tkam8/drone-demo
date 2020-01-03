@@ -11,6 +11,16 @@ include {
   path = "../../../../../terragrunt.hcl"
 }
 
+dependency "vpc" {
+  config_path = "../../vpc"
+
+  mock_outputs = {
+    network                 = "networkName"
+  }
+  mock_outputs_allowed_terraform_commands = ["validate", "plan"]
+  #skip_outputs = true
+}
+
 dependency "network-firewall" {
   config_path = "../../network-firewall"
 
@@ -27,7 +37,7 @@ inputs = {
   project          = "f5-gcs-4261-sales-apcj-japan"
   region           = "asia-northeast1"
   zone             = "asia-northeast1-b"
-  network          = dependency.network-firewall.outputs.network
+  network          = dependency.vpc.outputs.network
   subnetwork       = dependency.network-firewall.outputs.subnetwork
   gke_username     = get_env("TF_VAR_gke_password", "default")
   gke_password     = get_env("TF_VAR_gke_password", "default")
