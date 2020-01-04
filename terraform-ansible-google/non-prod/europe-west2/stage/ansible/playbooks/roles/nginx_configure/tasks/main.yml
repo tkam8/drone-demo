@@ -1,0 +1,19 @@
+---
+
+# Configure nginx with proxy_pass and proxy_cache
+
+- name: Creates cache directory
+  file:
+    path: /data/nginx/cache
+    state: directory
+
+- name: Setup nginx conf
+  # Setting the upstream var used in the template to a var set in a previous play
+  vars:
+    # Grab the ep_list hostvar from the first host in the inventory group gke_systems
+    upstreams: "{{ hostvars[groups['gke_systems'][0]].ep_list }}"
+  template:
+    # Render and write the NGINX configuration from template and place on NGINX
+    src=nginx.conf.tpl
+    dest=/etc/nginx/conf.d/upstream_test.conf
+  notify: restart nginx
