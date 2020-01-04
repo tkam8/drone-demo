@@ -73,7 +73,6 @@
 #   - master
 #   event:
 #   - pull_request
-
 ---
 kind: pipeline
 name: Apply templates
