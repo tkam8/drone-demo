@@ -22,7 +22,7 @@ dependency "vpc" {
   #skip_outputs = true
 }
 
-# These are the variables we have to pass in to use the module specified in the terragrunt configuration above
+# These are the variables we have to pass in to use the module specified in the terragrunt configuration above. Note the BIGIP_PASS value of default will never be set on later versions
 inputs = {
   name_prefix       = "demo-stage"
   project           = "f5-gcs-4261-sales-apcj-japan"
@@ -31,6 +31,7 @@ inputs = {
   network           = dependency.vpc.outputs.network
   subnetwork        = dependency.vpc.outputs.public_subnetwork
   f5_instance_type  = "n1-standard-4"
+  BIGIP_PASS        = get_env("BIGIP_PASS", "default")
   TS_URL            = "https://github.com/F5Networks/f5-telemetry-streaming/releases/download/v1.8.0/f5-telemetry-1.8.0-1.noarch.rpm"
   AS3_URL           = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.16.0/f5-appsvcs-3.16.0-6.noarch.rpm"
   DO_URL            = "https://github.com/F5Networks/f5-declarative-onboarding/releases/download/v1.9.0/f5-declarative-onboarding-1.9.0-1.noarch.rpm"
