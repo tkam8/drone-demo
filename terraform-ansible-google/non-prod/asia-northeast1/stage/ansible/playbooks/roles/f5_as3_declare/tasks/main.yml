@@ -38,6 +38,10 @@
     url: "https://{{ inventory_hostname }}:{{ ADMIN_HTTPS_PORT }}/mgmt/shared/appsvcs/declare"
     validate_certs: no
     timeout: 120
+  register: as3_status
+  until: as3_status is success
+  delay: 10
+  retries: 30
 
 ##
 ## Deleting json file containing the AS3 declaration since it contains API credentials information
