@@ -19,16 +19,16 @@
 #     validate_certs: no
 #   delegate_to: localhost
 
-- name: enable iApps LX Package management in UI
-  bigip_command:
-    provider:
-      server: "{{ inventory_hostname }}"
-      ssh_keyfile: "{{ ansible_ssh_private_key_file }}"
-      transport: cli
-      user: admin
-    commands: run /util bash -c "touch /var/config/rest/iapps/enable"
-    validate_certs: no
-  delegate_to: localhost
+# - name: enable iApps LX Package management in UI
+#   bigip_command:
+#     provider:
+#       server: "{{ inventory_hostname }}"
+#       ssh_keyfile: "{{ ansible_ssh_private_key_file }}"
+#       transport: cli
+#       user: admin
+#     commands: run /util bash -c "touch /var/config/rest/iapps/enable"
+#     validate_certs: no
+#   delegate_to: localhost
 
 - name: Provision ASM at "nominal" level
   bigip_provision:
