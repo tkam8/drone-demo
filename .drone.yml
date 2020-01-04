@@ -107,7 +107,7 @@ steps:
   # Write the ssh key to disk
   - mkdir /drone/src/gcp
   - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
-  - chmod 600 /drone/src/gcp/gcp_ssh_key
+  - chmod 400 /drone/src/gcp/gcp_ssh_key
 
 - name: Apply Ansible playbook
   image: tkam8/tfansible:latest
