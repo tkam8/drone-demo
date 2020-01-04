@@ -24,7 +24,7 @@
     bigip_auth_token: "{{ bigip_auth_response.json.token.token }}"
     
   ##
-  ## if the AS3 declaration takes time, may return a 202
+  ## If the AS3 declaration takes time, may return a 202
   ##
 - name: deploying AS3 service 
   delegate_to: localhost

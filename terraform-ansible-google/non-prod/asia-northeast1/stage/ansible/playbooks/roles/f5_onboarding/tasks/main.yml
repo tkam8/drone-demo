@@ -1,5 +1,5 @@
 ---
-
+# Ensure SSH connectivity
 - name: Wait a maximum of 120 seconds for BIG-IP port 22
   wait_for:
     host: "{{ inventory_hostname }}"
