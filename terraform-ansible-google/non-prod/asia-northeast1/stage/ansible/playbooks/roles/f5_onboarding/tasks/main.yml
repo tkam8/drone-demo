@@ -7,14 +7,27 @@
     timeout: 10
   delegate_to: localhost
 
+# - name: Set BIG-IP admin password
+#   bigip_command:
+#     provider:
+#       server: "{{ inventory_hostname }}"
+#       ssh_keyfile: "{{ ansible_ssh_private_key_file }}"
+#       transport: cli
+#       user: admin
+#     commands: modify auth user admin password {{ ADMIN_PASSWORD }}
+#     validate_certs: no
+#   delegate_to: localhost
+
 - name: Set BIG-IP admin password
-  bigip_command:
+  bigip_user:
+    state: present
+    username_credential: admin
+    password_credential: "{{ ADMIN_PASSWORD }}"
     provider:
       server: "{{ inventory_hostname }}"
       ssh_keyfile: "{{ ansible_ssh_private_key_file }}"
       transport: cli
       user: admin
-    commands: modify auth user admin password {{ ADMIN_PASSWORD }}
     validate_certs: no
   delegate_to: localhost
 
