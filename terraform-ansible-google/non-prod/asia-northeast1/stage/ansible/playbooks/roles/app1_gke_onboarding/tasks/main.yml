@@ -1,5 +1,10 @@
 ---
 
+# debugging
+- name: "Ansible | Print a variable"
+  debug:
+    msg: "The role path is {{ role_path }}"
+
 # Username and password will be grabbed from env var K8S_AUTH_USERNAME and K8S_AUTH_PASSWORD
 - name: Create a k8s namespace
   k8s:
