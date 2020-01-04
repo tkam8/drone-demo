@@ -11,14 +11,14 @@
     name: upstream2
     api_version: v1
     host: "{{ gke_url }}"
-    kubeconfig: "{{ role_path }}/../../kubeconfig"
+    kubeconfig: "{{ role_path }}/../../../kubeconfig"
     kind: Namespace
     state: present
 
 - name: Create a NGINX pod by reading the definition from a local file and wait to become ready
   k8s:
     state: present
-    kubeconfig: "{{ role_path }}/../../kubeconfig"
+    kubeconfig: "{{ role_path }}/../../../kubeconfig"
     src: "roles/app1_gke_onboarding/templates/pod_nginx.yml"
     wait: yes
     wait_condition: 
@@ -29,7 +29,7 @@
 - name: Create a NGINX Service by reading the definition from a local file and wait to become ready
   k8s:
     state: present
-    kubeconfig: "{{ role_path }}/../../kubeconfig"
+    kubeconfig: "{{ role_path }}/../../../kubeconfig"
     src: "roles/app1_gke_onboarding/templates/service_nginx.yml"
 
 # - name: Get NGINX service
@@ -38,7 +38,7 @@
 #     kind: Service
 #     name: nginx-upstream2
 #     namespace: upstream2
-#     kubeconfig: "{{ role_path }}/../../kubeconfig"
+#     kubeconfig: "{{ role_path }}/../../../kubeconfig"
 #   register: nginx_svc
 
 - name: Get NGINX endpoints for deployment created earlier
@@ -47,7 +47,7 @@
     kind: Endpoints
     name: nginx-upstream2
     namespace: upstream2
-    kubeconfig: "{{ role_path }}/../../kubeconfig"
+    kubeconfig: "{{ role_path }}/../../../kubeconfig"
   register: nginx_ep
 
 # - name: debug 
