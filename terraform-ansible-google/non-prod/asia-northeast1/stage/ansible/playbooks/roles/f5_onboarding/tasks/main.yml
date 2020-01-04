@@ -4,7 +4,7 @@
   wait_for:
     host: "{{ inventory_hostname }}"
     port: 22
-    timeout: 10
+    timeout: 180
   delegate_to: localhost
 
 # Password will be set in onboard script
