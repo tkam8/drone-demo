@@ -1,15 +1,15 @@
 
 ---
 
-- name: Ubuntu initialization
-  hosts: gcp_nginx_systems
-  become: yes
-  become_method: sudo
-  become_user: root
-  connection: ssh
-  gather_facts: true
-  roles: 
-    - ubuntu_initialize
+# - name: Ubuntu initialization
+#   hosts: gcp_nginx_systems
+#   become: yes
+#   become_method: sudo
+#   become_user: root
+#   connection: ssh
+#   gather_facts: true
+#   roles: 
+#     - ubuntu_initialize
 
 - name: Onboarding BIG-IP
   hosts: F5_systems
