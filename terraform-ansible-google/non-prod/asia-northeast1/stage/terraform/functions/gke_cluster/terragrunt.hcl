@@ -22,7 +22,7 @@ dependency "vpc" {
   #skip_outputs = true
 }
 
-# These are the variables we have to pass in to use the module specified in the terragrunt configuration above
+# These are the variables we have to pass in to use the module specified in the terragrunt configuration above. get_terragrunt_dir gives you the path where this hcl file exists
 inputs = {
   terragrunt_path  = "${get_terragrunt_dir()}"
   name_prefix      = "demo-stage"
