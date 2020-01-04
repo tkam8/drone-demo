@@ -1,6 +1,6 @@
 ---
 
-- name: Wait a maximum of 60 seconds for BIG-IP port 22
+- name: Wait a maximum of 120 seconds for BIG-IP port 22
   wait_for:
     host: "{{ inventory_hostname }}"
     port: 22
