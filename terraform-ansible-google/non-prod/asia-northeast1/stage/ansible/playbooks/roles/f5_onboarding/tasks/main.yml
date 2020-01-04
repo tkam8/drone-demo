@@ -18,3 +18,7 @@
       password: "{{ ADMIN_PASSWORD }}"
     validate_certs: no
   delegate_to: localhost
+  register: provision_status
+  until: provision_status is success
+  delay: 5
+  retries: 10
