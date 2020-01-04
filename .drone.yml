@@ -39,6 +39,7 @@ steps:
     BIGIP_PASS:
       from_secret: bigip_pass  
   commands: 
+  - ls terraform-ansible-google/non-prod/asia-northeast1/stage/ansible/
   - cd terraform-ansible-google/non-prod/asia-northeast1/stage/ansible/playbooks/
   - ansible-playbook --inventory inventory/hosts -vvvv site.yml
 
