@@ -5,16 +5,6 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 
-# Use below code as backup to dependency block as last resort
-// data "terraform_remote_state" "vpc" {
-//     backend = "gcs"
-//   config = {
-//     bucket         = "tky-drone-demo-stage"
-//     prefix         = "terraform/state"
-//     region         = "asia-northeast1"
-//   }
-// }
-
 terraform {
   source = "github.com/tkam8/drone-demo-module//ansible_files?ref=v0.1"
 }
@@ -64,8 +54,8 @@ inputs = {
   gke_cluster_name  = dependency.gke.outputs.gke_cluster_name
   gke_endpoint      = dependency.gke.outputs.gke_endpoint
 
-  app_tag_value         = "demostage"
-  #use below var for multiple nginx deployements
+  app_tag_value         = "demostage-eu"
+  #use below var for multiple nginx deployments
   #gcp_f5_pool_members  = join("','", dependency.nginx.outputs.nginx_private_ip)
   nginx_private_ip      = dependency.nginx.outputs.nginx_private_ip
   cluster_username      = dependency.gke.outputs.cluster_username

@@ -24,7 +24,7 @@ dependency "vpc" {
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above. Note the BIGIP_PASS value of default will never be set on later versions
 inputs = {
-  name_prefix       = "demo-stage"
+  name_prefix       = "demo-stage-eu"
   project           = "f5-gcs-4261-sales-apcj-japan"
   region            = "europe-west2"
   zone              = "europe-west2-b"
