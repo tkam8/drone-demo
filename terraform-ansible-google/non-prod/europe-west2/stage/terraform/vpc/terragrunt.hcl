@@ -16,7 +16,7 @@ include {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 # Make sure to specify cidr blocks different from any existing networks
 inputs = {
-  name_prefix          = "demo-stage"
+  name_prefix          = "demo-stage-eu"
   project              = "f5-gcs-4261-sales-apcj-japan"
   region               = "europe-west2"
   cidr_block           = "10.7.0.0/16"
