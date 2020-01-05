@@ -18,9 +18,9 @@ dependency "vpc" {
   config_path = "../vpc"
 
   mock_outputs = {
-    network                 = "networkName-eu"
-    public_subnetwork       = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet3"
-    private_subnetwork      = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet4"
+    network                 = "networkName"
+    public_subnetwork       = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
+    private_subnetwork      = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet2"
     public_subnetwork_cidr_block             = "10.1.10.0/24"
     public_subnetwork_secondary_cidr_block   = "10.1.11.0/24"
     private_subnetwork_cidr_block            = "192.168.10.0/24"
