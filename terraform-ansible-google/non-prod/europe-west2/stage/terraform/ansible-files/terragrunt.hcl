@@ -28,7 +28,7 @@ dependency "nginx" {
   config_path = "../functions/nginx"
 
   mock_outputs = {
-    nginx_public_ip   = "networkName"
+    nginx_public_ip   = "networkName-eu"
     nginx_public_ip   = "4.4.4.4"
     nginx_private_ip  = "5.5.5.5"
   }
@@ -38,7 +38,7 @@ dependency "gke" {
   config_path = "../functions/gke_cluster"
 
   mock_outputs = {
-    gke_cluster_name    = "clusterName"
+    gke_cluster_name    = "clusterName-eu"
     gke_endpoint        = "3.3.3.3"
     cluster_username    = "admin"
     cluster_password    = "default"

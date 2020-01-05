@@ -15,8 +15,8 @@ dependency "vpc" {
   config_path = "../../vpc"
 
   mock_outputs = {
-    network             = "networkName"
-    public_subnetwork   = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet1"
+    network             = "networkName-eu"
+    public_subnetwork   = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/subnetworks/mock-subnet3"
   }
   mock_outputs_allowed_terraform_commands = ["validate", "plan"]
   #skip_outputs = true
