@@ -7,9 +7,11 @@
     path: /data/nginx/cache
     state: directory
 
-# Renaming the default.conf so it doesn't interfere with the server_name localhost set in this playbook
-- name: Rename default.conf 
-  command: mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
+# Remove the default.conf so it doesn't interfere with the server_name localhost set in this playbook
+- name: Remove default conf file
+  file:
+    path: /etc/nginx/conf.d/default.conf
+    state: absent
 
 - name: Setup nginx conf
   # Setting the upstream var used in the template to a var set in a previous play
