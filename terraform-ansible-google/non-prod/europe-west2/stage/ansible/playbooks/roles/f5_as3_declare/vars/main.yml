@@ -1,6 +1,6 @@
 ---
 
-service_name: "www_demo_f5nginx_gcp"
+service_name: "www_demo_f5nginx_gcp_eu"
 partition: "Tenant1"
 as3_template_name: "as3_https_adv_template"
 

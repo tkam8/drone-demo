@@ -34,9 +34,9 @@ dependency "vpc" {
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
-  name_prefix             = "demo-stage"
+  name_prefix             = "demo-stage-eu"
   project                 = "f5-gcs-4261-sales-apcj-japan"
-  region                  = "asia-northeast1"
+  region                  = "europe-west2"
   network                 = dependency.vpc.outputs.network
   allowed_networks        = ["210.226.41.0/24"]
 
