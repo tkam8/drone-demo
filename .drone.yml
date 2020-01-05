@@ -44,13 +44,22 @@ steps:
   - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
   - chmod 600 /drone/src/gcp/gcp_ssh_key
 
-- name: Check Ansible playbook Syntax
+- name: Check Ansible playbook Syntax (asia)
   image: tkam8/tfansible:latest
   environment:
     BIGIP_PASS:
       from_secret: bigip_pass  
   commands: 
   - cd terraform-ansible-google/non-prod/asia-northeast1/stage/ansible/playbooks/
+  - ansible-playbook --inventory none --syntax-check -vv site.yml
+
+- name: Check Ansible playbook Syntax (europe)
+  image: tkam8/tfansible:latest
+  environment:
+    BIGIP_PASS:
+      from_secret: bigip_pass  
+  commands: 
+  - cd terraform-ansible-google/non-prod/europe-west2/stage/ansible/playbooks/
   - ansible-playbook --inventory none --syntax-check -vv site.yml
 
 # - name: Slack notification
@@ -109,7 +118,7 @@ steps:
   - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
   - chmod 400 /drone/src/gcp/gcp_ssh_key
 
-- name: Apply Ansible playbook
+- name: Apply Ansible playbook (asia)
   image: tkam8/tfansible:latest
   environment:
     BIGIP_PASS:
@@ -117,6 +126,16 @@ steps:
   commands: 
   - ls terraform-ansible-google/non-prod/asia-northeast1/stage/ansible/
   - cd terraform-ansible-google/non-prod/asia-northeast1/stage/ansible/playbooks/
+  - ansible-playbook --inventory inventory/hosts -vvvv site.yml
+
+- name: Apply Ansible playbook (europe)
+  image: tkam8/tfansible:latest
+  environment:
+    BIGIP_PASS:
+      from_secret: bigip_pass  
+  commands: 
+  - ls terraform-ansible-google/non-prod/europe-west2/stage/ansible/
+  - cd terraform-ansible-google/non-prod/europe-west2/stage/ansible/playbooks/
   - ansible-playbook --inventory inventory/hosts -vvvv site.yml
 
 # - name: Slack notification
