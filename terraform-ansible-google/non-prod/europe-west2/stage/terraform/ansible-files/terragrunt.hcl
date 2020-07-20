@@ -5,8 +5,18 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 
+# Use below code as backup to dependency block as last resort
+// data "terraform_remote_state" "vpc" {
+//     backend = "gcs"
+//   config = {
+//     bucket         = "tky-drone-demo-stage"
+//     prefix         = "terraform/state"
+//     region         = "asia-northeast1"
+//   }
+// }
+
 terraform {
-  source = "git@github.com:f5vcdn/vCDN-terraform-modules//ansible_files?ref=v0.1"
+  source = "github.com/tkam8/drone-demo-module//ansible_files?ref=v0.1"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -28,37 +38,17 @@ dependency "nginx" {
   config_path = "../functions/nginx"
 
   mock_outputs = {
-    nginx_public_ip   = "networkName-eu"
-    nginx_public_ip   = "4.4.4.4"
-    nginx_private_ip  = "5.5.5.5"
+    #nginx_public_ip   = "4.4.4.4"
+    #nginx_private_ip  = "5.5.5.5"
+    nginx_instancegroup_self_link = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/instancegroup/mock-ig1"
   }
 }
-
-dependency "player_dash" {
-  config_path = "../functions/player_dash"
-
-  mock_outputs = {
-    ubuntu_instance      = "instanceSelfLink"
-    ubuntu_public_ip     = "6.6.6.6"
-    ubuntu_private_ip    = "7.7.7.7"
-  }
-}
-
-dependency "fluentd_external" {
-  config_path = "../functions/fluentd_external"
-
-  mock_outputs = {
-    ubuntu_private_ip     = "9.9.9.9"
-    ubuntu_public_ip      = "10.10.10.10"
-  }
-}
-
 
 dependency "gke" {
   config_path = "../functions/gke_cluster"
 
   mock_outputs = {
-    gke_cluster_name    = "clusterName-eu"
+    gke_cluster_name    = "clusterName"
     gke_endpoint        = "3.3.3.3"
     cluster_username    = "admin"
     cluster_password    = "default"
@@ -68,21 +58,17 @@ dependency "gke" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
   terragrunt_path   = "${get_terragrunt_dir()}"
-  f5_public_ip      = dependency.f5.outputs.f5_public_ip
-  f5_private_ip     = dependency.f5.outputs.f5_private_ip
-  nginx_public_ip   = dependency.nginx.outputs.nginx_public_ip
-  gke_cluster_name  = dependency.gke.outputs.gke_cluster_name
-  gke_endpoint      = dependency.gke.outputs.gke_endpoint
+  f5_public_ip                  = dependency.f5.outputs.f5_public_ip
+  f5_private_ip                 = dependency.f5.outputs.f5_private_ip
+  #nginx_public_ip              = dependency.nginx.outputs.nginx_public_ip
+  #nginx_private_ip             = dependency.nginx.outputs.nginx_private_ip
+  nginx_instancegroup_self_link = dependency.nginx.outputs.nginx_instancegroup_self_link
+  gke_cluster_name              = dependency.gke.outputs.gke_cluster_name
+  gke_endpoint                  = dependency.gke.outputs.gke_endpoint
 
-  app_tag_value               = "vcdnstage-eu"
-  domain_name                 = "europe.runtest.org"
-  f5aas_gslb_zone             = "runtest.org"
-  #use below var for multiple nginx deployments
-  #gcp_f5_pool_members        = join("','", dependency.nginx.outputs.nginx_private_ip)
-  nginx_private_ip            = dependency.nginx.outputs.nginx_private_ip
-  cluster_username            = dependency.gke.outputs.cluster_username
-  cluster_password            = dependency.gke.outputs.cluster_password
-  player_dash_public_ip       = dependency.player_dash.outputs.ubuntu_public_ip
-  fluentd_external_private_ip = dependency.fluentd_external.outputs.ubuntu_private_ip
-  fluentd_external_public_ip  = dependency.fluentd_external.outputs.ubuntu_public_ip
+  app_tag_value         = "demostage"
+  #use below var for multiple nginx deployements
+  #gcp_f5_pool_members  = join("','", dependency.nginx.outputs.nginx_private_ip)
+  cluster_username      = dependency.gke.outputs.cluster_username
+  cluster_password      = dependency.gke.outputs.cluster_password
 }
