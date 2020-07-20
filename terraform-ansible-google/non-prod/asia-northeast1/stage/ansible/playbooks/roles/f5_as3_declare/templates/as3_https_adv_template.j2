@@ -40,8 +40,10 @@
                         "members": [
                             {
                             "servicePort": 80,
-                            "serverAddresses": {{ LIST_AS3_POOL_SERVERS }},
-                            "shareNodes": true 
+                            "addressDiscovery": "consul",
+                            "updateInterval": 10,
+                            "uri": "http://{{ consul_private_ip }}:8500/v1/catalog/service/nginx",
+                            "shareNodes": true
                             }
                         ]
                     },

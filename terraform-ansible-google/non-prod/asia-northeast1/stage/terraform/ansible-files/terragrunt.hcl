@@ -38,9 +38,17 @@ dependency "nginx" {
   config_path = "../functions/nginx"
 
   mock_outputs = {
-    nginx_public_ip   = "networkName"
     nginx_public_ip   = "4.4.4.4"
     nginx_private_ip  = "5.5.5.5"
+  }
+}
+
+dependency "consul" {
+  config_path = "../functions/consul"
+
+  mock_outputs = {
+    consul_public_ip   = "6.6.6.6"
+    consul_private_ip  = "7.7.7.7"
   }
 }
 
@@ -61,13 +69,15 @@ inputs = {
   f5_public_ip      = dependency.f5.outputs.f5_public_ip
   f5_private_ip     = dependency.f5.outputs.f5_private_ip
   nginx_public_ip   = dependency.nginx.outputs.nginx_public_ip
+  nginx_private_ip  = dependency.nginx.outputs.nginx_private_ip
+  consul_public_ip  = dependency.consul.outputs.consul_public_ip
+  consul_private_ip = dependency.consul.outputs.consul_private_ip
   gke_cluster_name  = dependency.gke.outputs.gke_cluster_name
   gke_endpoint      = dependency.gke.outputs.gke_endpoint
 
   app_tag_value         = "demostage"
   #use below var for multiple nginx deployements
   #gcp_f5_pool_members  = join("','", dependency.nginx.outputs.nginx_private_ip)
-  nginx_private_ip      = dependency.nginx.outputs.nginx_private_ip
   cluster_username      = dependency.gke.outputs.cluster_username
   cluster_password      = dependency.gke.outputs.cluster_password
 }

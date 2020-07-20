@@ -3,7 +3,7 @@
 # Terragrunt will copy the Terraform configurations specified by the source parameter, along with any files in the
 # working directory, into a temporary folder, and execute your Terraform commands in that folder.
 terraform {
-  source = "github.com/tkam8/drone-demo-module//gcp_nginx_systems?ref=v0.1"
+  source = "github.com/tkam8/drone-demo-module//gcp_consul?ref=v0.1"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -30,6 +30,7 @@ inputs = {
   zone                 = "asia-northeast1-b"
   network              = dependency.vpc.outputs.network
   subnetwork           = dependency.vpc.outputs.public_subnetwork
-  nginx_instance_type  = "n1-standard-2"
+  consul_instance_type = "n1-standard-2"
+  consul_version       = "1.8.0"
   app_tag_value        = "terrydemo"
 }
