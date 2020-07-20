@@ -32,6 +32,7 @@ dependency "f5" {
     f5_public_ip    = "1.1.1.1"
     f5_private_ip   = "2.2.2.2"
   }
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
 }
 
 dependency "nginx" {
@@ -42,6 +43,7 @@ dependency "nginx" {
     #nginx_private_ip  = "5.5.5.5"
     nginx_instancegroup_self_link = "https://www.googleapis.com/compute/v1/projects/f5-gcs-4261-sales-apcj-japan/regions/asia-northeast1/instancegroup/mock-ig1"
   }
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
 }
 
 dependency "consul" {
@@ -51,6 +53,7 @@ dependency "consul" {
     consul_public_ip   = "6.6.6.6"
     consul_private_ip  = "7.7.7.7"
   }
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
 }
 
 dependency "gke" {
@@ -62,6 +65,7 @@ dependency "gke" {
     cluster_username    = "admin"
     cluster_password    = "default"
   }
+  mock_outputs_allowed_terraform_commands = ["validate", "plan", "destroy"]
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
