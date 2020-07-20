@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  namespace: upstream-eu
+  labels:
+    app: nginx-upstream-eu
+  name: nginx-upstream-eu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-upstream-eu
+  template:
+    metadata:
+      labels:
+        app: nginx-upstream-eu
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx-upstream-eu
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
