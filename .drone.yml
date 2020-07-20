@@ -1,48 +1,48 @@
----
-kind: pipeline
-name: Plan & Check
+# ---
+# kind: pipeline
+# name: Plan & Check
 
-steps:
+# steps:
 
-- name: Terraform init and plan
-  image: tkam8/tfansible:latest
-  environment:
-    GOOGLE_CREDENTIALS:
-      from_secret: gcp_creds
-    GCE_SSH_KEY:
-      from_secret: gcp_ssh_key
-    BIGIP_PASS:
-      from_secret: bigip_pass
-    TF_VAR_gke_username:
-      from_secret: gke_username
-    TF_VAR_gke_password:
-      from_secret: gke_password
-  commands:
-  # Below commands are for debug purposes only
-  # - echo $${BIGIP_PASS}
-  # - echo $${TF_VAR_gke_username}
-  # - echo $${TF_VAR_gke_password}
-  - pwd
-  - ls
-  - ls terraform-ansible-google/non-prod/
-  - cd terraform-ansible-google/non-prod/
-  - terragrunt plan-all -input=false
+# - name: Terraform init and plan
+#   image: tkam8/tfansible:latest
+#   environment:
+#     GOOGLE_CREDENTIALS:
+#       from_secret: gcp_creds
+#     GCE_SSH_KEY:
+#       from_secret: gcp_ssh_key
+#     BIGIP_PASS:
+#       from_secret: bigip_pass
+#     TF_VAR_gke_username:
+#       from_secret: gke_username
+#     TF_VAR_gke_password:
+#       from_secret: gke_password
+#   commands:
+#   # Below commands are for debug purposes only
+#   # - echo $${BIGIP_PASS}
+#   # - echo $${TF_VAR_gke_username}
+#   # - echo $${TF_VAR_gke_password}
+#   - pwd
+#   - ls
+#   - ls terraform-ansible-google/non-prod/
+#   - cd terraform-ansible-google/non-prod/
+#   - terragrunt plan-all -input=false
 
-- name: SSH key preparation for Ansible Plugin
-  image: tkam8/tfansible:latest
-  environment:
-    GCE_SSH_KEY:
-      from_secret: gcp_ssh_key
-  commands: 
-  # Below commands are for debug purposes only
-  # - ls /drone/src/
-  # - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
-  # - cat /drone/src/kubeconfig
-  # - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/group_vars/F5_systems/vars
-  # Write the ssh key to disk
-  - mkdir /drone/src/gcp
-  - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
-  - chmod 600 /drone/src/gcp/gcp_ssh_key
+# - name: SSH key preparation for Ansible Plugin
+#   image: tkam8/tfansible:latest
+#   environment:
+#     GCE_SSH_KEY:
+#       from_secret: gcp_ssh_key
+#   commands: 
+#   # Below commands are for debug purposes only
+#   # - ls /drone/src/
+#   # - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/inventory/hosts
+#   # - cat /drone/src/kubeconfig
+#   # - cat terraform-ansible-google/NGINX_F5_CDN/ansible/playbooks/group_vars/F5_systems/vars
+#   # Write the ssh key to disk
+#   - mkdir /drone/src/gcp
+#   - printenv GCE_SSH_KEY > /drone/src/gcp/gcp_ssh_key
+#   - chmod 600 /drone/src/gcp/gcp_ssh_key
 
 # - name: Check Ansible playbook Syntax (asia)
 #   image: tkam8/tfansible:latest
@@ -104,8 +104,8 @@ steps:
       from_secret: gke_password
   commands:
   - cd terraform-ansible-google/non-prod/
-  #- terragrunt apply-all --terragrunt-non-interactive -auto-approve
-  - terragrunt destroy-all --terragrunt-non-interactive -force
+  - terragrunt apply-all --terragrunt-non-interactive -auto-approve
+  #- terragrunt destroy-all --terragrunt-non-interactive -force
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
