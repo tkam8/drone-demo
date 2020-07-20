@@ -1,15 +1,15 @@
 
 ---
 
-- name: Ubuntu initialization
-  hosts: gcp_nginx_systems
-  become: yes
-  become_method: sudo
-  become_user: root
-  connection: ssh
-  gather_facts: true
-  roles: 
-    - ubuntu_initialize
+# - name: Ubuntu initialization
+#   hosts: gcp_nginx_systems
+#   become: yes
+#   become_method: sudo
+#   become_user: root
+#   connection: ssh
+#   gather_facts: true
+#   roles:
+#     - ubuntu_initialize
 
 - name: Onboarding BIG-IP
   hosts: F5_systems
@@ -30,11 +30,11 @@
   roles:
    - app1_gke_onboarding
 
-- name: GCP NGINX Cache Config1
-  hosts: gcp_nginx_systems
-  become: yes
-  become_method: sudo
-  connection: ssh
-  gather_facts: true
-  roles:
-   - nginx_configure
+# - name: GCP NGINX Cache Config1
+#   hosts: gcp_nginx_systems
+#   become: yes
+#   become_method: sudo
+#   connection: ssh
+#   gather_facts: true
+#   roles:
+#    - nginx_configure
