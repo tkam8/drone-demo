@@ -3,7 +3,7 @@
 # Terragrunt will copy the Terraform configurations specified by the source parameter, along with any files in the
 # working directory, into a temporary folder, and execute your Terraform commands in that folder.
 terraform {
-  source = "git@github.com:f5vcdn/vCDN-terraform-modules//gcp_f5_standalone_1NIC?ref=v0.1"
+  source = "github.com/tkam8/drone-demo-module//gcp_f5_standalone_1NIC?ref=v0.1"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -24,7 +24,7 @@ dependency "vpc" {
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above. Note the BIGIP_PASS value of default will never be set on later versions
 inputs = {
-  name_prefix       = "vcdn-stage-eu"
+  name_prefix       = "demo-stage-eu"
   project           = "f5-gcs-4261-sales-apcj-japan"
   region            = "europe-west2"
   zone              = "europe-west2-b"
