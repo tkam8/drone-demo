@@ -31,5 +31,6 @@ inputs = {
   network              = dependency.vpc.outputs.network
   subnetwork           = dependency.vpc.outputs.public_subnetwork
   nginx_instance_type  = "n1-standard-2"
+  consul_version       = "1.8.0"
   app_tag_value        = "terrydemo"
 }
