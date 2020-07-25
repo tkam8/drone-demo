@@ -15,15 +15,16 @@
                 "class": "Tenant",
                 "{{ as3_service_name }}": {
                     "class": "Application",
-                    "template": "https",
+                    "template": "generic",
                     "svcaddr1": {
                         "class": "Service_Address",
                         "trafficGroup": "/Common/traffic-group-1",
                         "virtualAddress": "{{ as3_virtual_address }}"
                     },
-                    "serviceMain": {
+                    "serviceNGINX": {
                         "class": "Service_HTTPS",
                         "virtualAddresses": [{ "use": "svcaddr1"}],
+                        "virtualPort": 443,
                         "pool": "{{ as3_pool_name }}",
                         "securityLogProfiles": [
                             {
@@ -35,7 +36,7 @@
                         },
                         "serverTLS": "frontside"
                     },
-                    "serviceMain": {
+                    "serviceVault": {
                         "class": "Service_HTTPS",
                         "virtualAddresses": [{ "use": "svcaddr1"}],
                         "virtualPort": 9443,
