@@ -16,12 +16,30 @@
                 "{{ as3_service_name }}": {
                     "class": "Application",
                     "template": "https",
+                    "svcaddr1": {
+                        "class": "Service_Address",
+                        "trafficGroup": "/Common/traffic-group-1",
+                        "virtualAddress": "{{ as3_virtual_address }}"
+                    },
                     "serviceMain": {
                         "class": "Service_HTTPS",
-                        "virtualAddresses": [
-                            "{{ as3_virtual_address }}"
-                        ],
+                        "virtualAddresses": [{ "use": "svcaddr1"}],
                         "pool": "{{ as3_pool_name }}",
+                        "securityLogProfiles": [
+                            {
+                                "bigip": "/Common/Log all requests" 
+                            }
+                        ],
+                        "policyWAF": {
+                            "use": "{{ as3_waf_name }}"
+                        },
+                        "serverTLS": "frontside"
+                    },
+                    "serviceMain": {
+                        "class": "Service_HTTPS",
+                        "virtualAddresses": [{ "use": "svcaddr1"}],
+                        "virtualPort": 9443,
+                        "pool": "{{ as3_pool_name_vault }}",
                         "securityLogProfiles": [
                             {
                                 "bigip": "/Common/Log all requests" 
@@ -43,6 +61,21 @@
                             "addressDiscovery": "consul",
                             "updateInterval": 10,
                             "uri": "http://{{ consul_private_ip }}:8500/v1/catalog/service/nginx",
+                            "shareNodes": true
+                            }
+                        ]
+                    },
+                    "{{ as3_pool_name_vault }}": {
+                        "class": "Pool",
+                        "monitors": [
+                            "http"
+                        ],
+                        "members": [
+                            {
+                            "servicePort": 80,
+                            "addressDiscovery": "consul",
+                            "updateInterval": 10,
+                            "uri": "http://{{ consul_private_ip }}:8500/v1/catalog/service/vault",
                             "shareNodes": true
                             }
                         ]
