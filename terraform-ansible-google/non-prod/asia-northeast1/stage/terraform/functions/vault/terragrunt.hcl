@@ -29,6 +29,7 @@ inputs = {
   zone                 = "asia-northeast1-b"
   storage_bucket_name  = "tky-drone-demo-stage-vault"
   network              = dependency.vpc.outputs.network
+  kms_keyring          = "vault2"
   vault_machine_type   = "n1-standard-1"
   consul_version       = "1.8.0"
   app_tag_value        = "terrydemo"
