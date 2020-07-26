@@ -31,7 +31,6 @@ inputs = {
   network                      = dependency.vpc.outputs.network
   kms_keyring                  = "vault3"
   vault_machine_type           = "n1-standard-1"
-  storage_bucket_force_destroy = "true"
   consul_version               = "1.8.0"
   app_tag_value                = "terrydemo"
 }
