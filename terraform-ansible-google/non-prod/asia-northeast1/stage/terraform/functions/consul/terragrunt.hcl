@@ -32,5 +32,8 @@ inputs = {
   subnetwork           = dependency.vpc.outputs.public_subnetwork
   consul_instance_type = "n1-standard-2"
   consul_version       = "1.8.0"
+  vault_addr           = get_env("VAULT_ADDR", "default")
+  vault_role_dev       = "terry-iam-role-gce-dev"
+  vault_ruleset_path   = "gcp/key/my-project-consuler"
   app_tag_value        = "terrydemo"
 }

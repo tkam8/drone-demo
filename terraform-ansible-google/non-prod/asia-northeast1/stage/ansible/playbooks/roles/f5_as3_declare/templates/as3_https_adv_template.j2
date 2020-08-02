@@ -36,22 +36,6 @@
                         },
                         "serverTLS": "frontside"
                     },
-                    "serviceVault": {
-                        "class": "Service_HTTPS",
-                        "virtualAddresses": [{ "use": "svcaddr1"}],
-                        "virtualPort": 9443,
-                        "redirect80": false,
-                        "pool": "{{ as3_pool_name_vault }}",
-                        "securityLogProfiles": [
-                            {
-                                "bigip": "/Common/Log all requests" 
-                            }
-                        ],
-                        "policyWAF": {
-                            "use": "{{ as3_waf_name }}"
-                        },
-                        "serverTLS": "frontside"
-                    },
                     "{{ as3_pool_name }}": {
                         "class": "Pool",
                         "monitors": [

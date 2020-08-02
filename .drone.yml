@@ -13,14 +13,16 @@ steps:
       from_secret: gcp_ssh_key
     BIGIP_PASS:
       from_secret: bigip_pass
+    VAULT_ADDR:
+      from_secret: vault_addr
     TF_VAR_gke_username:
       from_secret: gke_username
     TF_VAR_gke_password:
       from_secret: gke_password
   commands:
   - cd terraform-ansible-google/non-prod/
-  #- terragrunt apply-all --terragrunt-non-interactive -auto-approve
-  - terragrunt destroy-all --terragrunt-non-interactive -force
+  - terragrunt apply-all --terragrunt-non-interactive -auto-approve
+  #- terragrunt destroy-all --terragrunt-non-interactive -force
 
 - name: SSH key preparation for Ansible Plugin
   image: tkam8/tfansible:latest
