@@ -34,6 +34,6 @@ inputs = {
   consul_version       = "1.8.0"
   vault_addr           = get_env("VAULT_ADDR", "default")
   vault_role_dev       = "terry-iam-role-gce-dev"
-  vault_ruleset_path   = "gcp/key/my-project-consuler"
+  vault_ruleset_path   = "gcp/key/my-project-consuler2"
   app_tag_value        = "terrydemo"
 }

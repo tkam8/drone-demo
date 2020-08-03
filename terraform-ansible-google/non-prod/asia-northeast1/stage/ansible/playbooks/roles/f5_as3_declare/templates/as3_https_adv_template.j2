@@ -51,21 +51,6 @@
                             }
                         ]
                     },
-                    "{{ as3_pool_name_vault }}": {
-                        "class": "Pool",
-                        "monitors": [
-                            "http"
-                        ],
-                        "members": [
-                            {
-                            "servicePort": 8200,
-                            "addressDiscovery": "consul",
-                            "updateInterval": 10,
-                            "uri": "http://{{ consul_private_ip }}:8500/v1/catalog/service/vault",
-                            "shareNodes": true
-                            }
-                        ]
-                    },
                     "{{ as3_waf_name }}": {
                         "class": "WAF_Policy",
                         "url": "https://raw.githubusercontent.com/tkam8/ansible_f5/master/roles/operations/files/asmpolicy/asm-policy-high.xml",
