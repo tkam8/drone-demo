@@ -16,5 +16,5 @@ as3_pool_name: "pool_{{ service_name }}"
 as3_service_label: "{{ service_name }}"
 as3_waf_name: "waf_{{ service_name }}"
 
-#######AS3 service definition (vault)########
+#######AS3 service definition (vault)#########
 as3_pool_name_vault: "pool_{{ service_name_vault }}"
