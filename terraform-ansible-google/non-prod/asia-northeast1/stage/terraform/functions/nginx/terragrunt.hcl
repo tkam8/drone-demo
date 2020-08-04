@@ -22,7 +22,7 @@ dependency "vpc" {
   #skip_outputs = true
 }
 
-# These are the variables we have to pass in to use the module specified in the terragrunt configuration above
+#These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
   target_size          = "2"
   name_prefix          = "demo-stage"
