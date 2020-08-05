@@ -32,10 +32,10 @@
                                 "bigip": "/Common/Log all requests" 
                             }
                         ],
+                        "policyWAF": {
+                           use": "{{ as3_waf_name }}"
+                        },
                         "serverTLS": "frontside"
-                    },
-                    "policyWAF": {
-                        use": "{{ as3_waf_name }}"
                     },
                     "{{ as3_pool_name }}": {
                         "class": "Pool",
